@@ -48,6 +48,16 @@
                ReferencedContainer = "container:Sun Wallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3C83B27C206317A7001D08CE"
+               BuildableName = "BRCoreTests.xctest"
+               BlueprintName = "BRCoreTests"
+               ReferencedContainer = "container:Sun Wallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

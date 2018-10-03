@@ -96,7 +96,7 @@ open class BRReplicatedKVStore: NSObject {
     init(encryptionKey: BRKey, remoteAdaptor: BRRemoteKVStoreAdaptor) throws {
         key = encryptionKey
         remote = remoteAdaptor
-        dbQueue = DispatchQueue(label: "com.voisine.breadwallet.kvDBQueue", attributes: [])
+        dbQueue = DispatchQueue(label: "com.sunwallet.ios.kvDBQueue", attributes: [])
         super.init()
         try self.openDatabase()
         try self.migrateDatabase()

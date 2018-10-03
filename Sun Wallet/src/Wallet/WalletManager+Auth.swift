@@ -4,7 +4,7 @@ import LocalAuthentication
 import BRCore
 import sqlite3
 
-private let WalletSecAttrService = "com.sunwallet"
+private let WalletSecAttrService = "com.sunwallet.ios"
 private let BIP39CreationTime = TimeInterval(BIP39_CREATION_TIME) - NSTimeIntervalSince1970
 
 /// WalletAuthenticator is a protocol whose implementors are able to interact with wallet authentication

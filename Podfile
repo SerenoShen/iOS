@@ -1,19 +1,21 @@
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 target 'Sun Wallet' do
   use_frameworks!
+  
   #Analytics
   pod 'Analytics'
-  pod 'AppsFlyerFramework'
-  
+  pod 'segment-appsflyer-ios'
   pod 'Lokalise' #OTA Localization SDK
   pod 'Instabug' #Bug Tracking
   pod 'OneSignal' #Push Notifications
   pod 'BoundlessKit' #Engagement SDK
   pod 'ZendeskSDK' #Support SDK
+  
+  pod 'lottie-ios'
 
   #Crypto
-  pod 'XMRMiner'
+  #pod 'XMRMiner'
   pod 'Cryptex'
   #pod 'StellarKit'
   #pod 'stellar-ios-mac-sdk'
@@ -23,6 +25,8 @@ target 'Sun Wallet' do
   pod 'Alamofire'
   
   ##UI
+  pod 'TinyConstraints'
+  pod 'Pastel'
   pod 'UserInterface'
   pod 'XLPagerTabStrip' #Paging Tabbar
   pod 'ESTabBarController-swift' #TabBar Controller
@@ -33,7 +37,6 @@ target 'Sun Wallet' do
 pod 'HGPlaceholders'
 #pod 'EMSpinnerButton'
 #pod 'DOFavoriteButton', :git => 'https://github.com/fumiyasac/DOFavoriteButton.git', :branch => 'master'
-#pod 'WhatsNew' #New
 #pod 'Cards' #App Store-like Cards
 #pod 'SRScratchView' #Scratch Card Lottery View
 #pod "TapCardView", :git => "https://github.com/shima11/TapCardView.git"
@@ -81,5 +84,6 @@ pod 'PromisesObjC', '~> 1.0', :testspecs => ['Tests', 'PerformanceTests']
 end
 
 target 'Notification Extension' do
+use_frameworks!
 pod 'OneSignal'
 end

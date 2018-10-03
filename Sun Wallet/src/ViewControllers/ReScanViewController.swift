@@ -11,7 +11,7 @@ class ReScanViewController : UIViewController, Subscriber {
     private let currency: CurrencyDef
     private let header = UILabel(font: .customBold(size: 26.0), color: .darkText)
     private let body = UILabel.wrapping(font: .systemFont(ofSize: 15.0))
-    private let button = BRDButton(title: S.ReScan.buttonTitle, type: .primary)
+    private let button = SUNButton(title: S.ReScan.buttonTitle, type: .primary)
     private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: .secondaryGrayText)
     private let faq: UIButton
 

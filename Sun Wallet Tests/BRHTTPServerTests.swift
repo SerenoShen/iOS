@@ -1,5 +1,5 @@
 import XCTest
-@testable import breadwallet
+@testable import sunwallet
 
 class BRHTTPServerTests: XCTestCase {
     var server: BRHTTPServer!

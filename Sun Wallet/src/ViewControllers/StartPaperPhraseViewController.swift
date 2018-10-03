@@ -5,11 +5,11 @@ class StartPaperPhraseViewController : UIViewController {
     init(callback: @escaping () -> Void) {
         self.callback = callback
         let buttonTitle = UserDefaults.walletRequiresBackup ? S.StartPaperPhrase.buttonTitle : S.StartPaperPhrase.againButtonTitle
-        button = BRDButton(title: buttonTitle, type: .primary)
+        button = SUNButton(title: buttonTitle, type: .primary)
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let button: BRDButton
+    private let button: SUNButton
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "PaperKey"))
     private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: .white)
     private let header = RadialGradientView(backgroundColor: .pink, offset: 64.0)

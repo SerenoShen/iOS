@@ -1,0 +1,6 @@
+framework module UserInterface {
+  umbrella header "UserInterface-umbrella.h"
+
+  export *
+  module * { export * }
+}

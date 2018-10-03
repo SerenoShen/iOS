@@ -14,8 +14,8 @@ class WritePaperPhraseViewController: UIViewController {
         return words.map { PhraseView(phrase: $0) }
     }()
     //This is awkwardly named because nextResponder is now named next is swift 3 :(,
-    private let proceed = BRDButton(title: S.WritePaperPhrase.next, type: .primary)
-    private let previous = BRDButton(title: S.WritePaperPhrase.previous, type: .secondaryTransparent)
+    private let proceed = SUNButton(title: S.WritePaperPhrase.next, type: .primary)
+    private let previous = SUNButton(title: S.WritePaperPhrase.previous, type: .secondaryTransparent)
     private var proceedWidth: NSLayoutConstraint?
     private var previousWidth: NSLayoutConstraint?
 

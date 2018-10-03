@@ -12,7 +12,7 @@ class StartWipeWalletViewController : UIViewController {
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RestoreIllustration"))
     private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
     private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
-    private let button = BRDButton(title: S.RecoverWallet.next, type: .primary)
+    private let button = SUNButton(title: S.RecoverWallet.next, type: .primary)
 
     override func viewDidLoad() {
         addSubviews()

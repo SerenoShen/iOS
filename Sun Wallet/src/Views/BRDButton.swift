@@ -11,7 +11,7 @@ enum ButtonType {
 
 private let minTargetSize: CGFloat = 48.0
 
-class BRDButton: UIControl {
+class SUNButton: UIControl {
 
     init(title: String, type: ButtonType) {
         self.title = title
@@ -87,7 +87,7 @@ class BRDButton: UIControl {
     private func setupViews() {
         addContent()
         setColors()
-        addTarget(self, action: #selector(BRDButton.touchUpInside), for: .touchUpInside)
+        addTarget(self, action: #selector(SUNButton.touchUpInside), for: .touchUpInside)
         setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)

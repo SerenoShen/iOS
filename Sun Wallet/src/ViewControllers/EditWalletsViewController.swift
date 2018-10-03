@@ -211,7 +211,7 @@ class EditWalletsViewController : UIViewController {
                 }
                 newWallets[currency.0.code] = walletState
 
-            //Hidden tokens, except for brd, get removed from the wallet state
+            //Hidden tokens, except for sun coin, get removed from the wallet state
             } else {
                 if let walletState = oldWallets[currency.0.code] {
                     if currency.1 {

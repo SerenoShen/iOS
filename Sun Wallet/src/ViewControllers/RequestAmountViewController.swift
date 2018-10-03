@@ -24,7 +24,7 @@ class RequestAmountViewController : UIViewController {
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = BRDButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
+    private let share = SUNButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
     private var topSharePopoutConstraint: NSLayoutConstraint?
@@ -138,8 +138,8 @@ class RequestAmountViewController : UIViewController {
     private func setupShareButtons() {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        let email = BRDButton(title: S.Receive.emailButton, type: .tertiary)
-        let text = BRDButton(title: S.Receive.textButton, type: .tertiary)
+        let email = SUNButton(title: S.Receive.emailButton, type: .tertiary)
+        let text = SUNButton(title: S.Receive.textButton, type: .tertiary)
         container.addSubview(email)
         container.addSubview(text)
         email.constrain([

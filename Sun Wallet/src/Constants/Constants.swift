@@ -29,7 +29,7 @@ struct C {
     static let secondsInDay: TimeInterval = 86400
     static let maxMoney: UInt64 = 21000000*100000000
     static let satoshis: UInt64 = 100000000
-    static let walletQueue = "com.sunwallet.walletqueue"
+    static let walletQueue = "com.sunwallet.ios.walletqueue"
     static let null = "(null)"
     static let maxMemoLength = 250
     static let feedbackEmail = "feedback@sunwallet.com"

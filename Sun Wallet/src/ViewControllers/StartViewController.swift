@@ -13,12 +13,12 @@ class StartViewController : UIViewController {
     private let logoBackground = MotionGradientView()
     private let messageBackground = MotionGradientView()
     private let message = CutoutLabel(font: .customMedium(size: 18.0), color: .whiteTint)
-    private let create = BRDButton(title: S.StartViewController.createButton, type: .primary)
-    private let recover = BRDButton(title: S.StartViewController.recoverButton, type: .secondaryTransparent)
+    private let create = SUNButton(title: S.StartViewController.createButton, type: .primary)
+    private let recover = SUNButton(title: S.StartViewController.recoverButton, type: .secondaryTransparent)
     private let didTapRecover: () -> Void
     private let didTapCreate: () -> Void
     private let background = UIView()
-    private var logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout").withRenderingMode(.alwaysTemplate))
+    private var logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
 
     override func viewDidLoad() {
         view.backgroundColor = .darkBackground

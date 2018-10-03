@@ -39,7 +39,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private let amountView: AmountViewController
     private let addressCell: AddressCell
     private let memoCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
-    private let sendButton = BRDButton(title: S.Send.sendLabel, type: .primary)
+    private let sendButton = SUNButton(title: S.Send.sendLabel, type: .primary)
     private let currencyBorder = UIView(color: .secondaryShadow)
     private var currencySwitcherHeightConstraint: NSLayoutConstraint?
     private var pinPadHeightConstraint: NSLayoutConstraint?

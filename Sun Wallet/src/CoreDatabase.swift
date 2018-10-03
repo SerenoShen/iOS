@@ -21,7 +21,7 @@ class CoreDatabase {
     private var txEnt: Int32 = 0
     private var blockEnt: Int32 = 0
     private var peerEnt: Int32 = 0
-    private let queue = DispatchQueue(label: "com.sunwallet.corecbqueue")
+    private let queue = DispatchQueue(label: "com.sunwallet.ios.corecbqueue")
 
     init(dbPath: String = "SunWallet.sqlite") {
         self.dbPath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil,

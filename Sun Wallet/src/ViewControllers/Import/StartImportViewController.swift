@@ -16,7 +16,7 @@ class StartImportViewController : UIViewController {
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "ImportIllustration"))
     private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
     private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let button = BRDButton(title: S.Import.scan, type: .primary)
+    private let button = SUNButton(title: S.Import.scan, type: .primary)
     private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
     private let leftCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)
     private let rightCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)

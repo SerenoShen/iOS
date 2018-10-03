@@ -158,15 +158,15 @@ class ApplicationController : Subscriber, Trackable {
             }
         }
         updateAssetBundles()
-        if !hasPerformedWalletDependentInitialization && didInitWallet {
+       /* if !hasPerformedWalletDependentInitialization && didInitWallet {
             didInitWalletManager()
-        }
+        }*/
     }
     
     private func setup() {
         setupDefaults()
         setupAppearance()
-        setupRootViewController()
+        setupLaunchViewController()
         window.makeKeyAndVisible()
         listenForPushNotificationRequest()
         offMainInitialization()
@@ -225,7 +225,7 @@ class ApplicationController : Subscriber, Trackable {
     }
 
     private func didInitWalletManager() {
-        guard let primaryWalletManager = primaryWalletManager else { return }
+      /*  guard let primaryWalletManager = primaryWalletManager else { return }
         guard let rootViewController = window.rootViewController as? RootNavigationController else { return }
         walletCoordinator = WalletCoordinator(walletManagers: walletManagers)
         primaryWalletManager.apiClient?.sendLaunchEvent()
@@ -262,7 +262,7 @@ class ApplicationController : Subscriber, Trackable {
                 self.walletManagers[UserDefaults.mostRecentSelectedCurrencyCode]?.peerManager?.connect()
             }
             startDataFetchers()
-        }
+        }*/
     }
     
     private func reinitWalletManager(callback: @escaping () -> Void) {
@@ -313,21 +313,18 @@ class ApplicationController : Subscriber, Trackable {
 
     private func setupAppearance() {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.header]
-        let backImage = #imageLiteral(resourceName: "Back").image(withInsets: UIEdgeInsets(top: 0.0, left: 8.0, bottom: 2.0, right: 0.0))
-        UINavigationBar.appearance().backIndicatorImage = backImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        // hide back button text
-        if #available(iOS 11, *) {
-            UIBarButtonItem.appearance().setBackButtonBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .normal, barMetrics: .default)
-        } else {
-            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: .default)
-        }
+    }
+
+    private func setupLaunchViewController() {
+        let launchViewController = LaunchViewController()
+        let nc = UINavigationController()
+        nc.pushViewController(launchViewController, animated: false)
+        window.rootViewController = nc
     }
 
     private func setupRootViewController() {
         let home = HomeScreenViewController(primaryWalletManager: walletManagers[Currencies.btc.code] as? BTCWalletManager)
         let nc = RootNavigationController()
-        nc.pushViewController(home, animated: false)
         
         home.didSelectCurrency = { currency in
             guard let walletManager = self.walletManagers[currency.code] else { return }
@@ -353,7 +350,6 @@ class ApplicationController : Subscriber, Trackable {
             nc.pushViewController(vc, animated: true)
         }
 
-        //State restoration
         if let currency = Store.state.currencies.first(where: { $0.code == UserDefaults.selectedCurrencyCode }),
             let walletManager = self.walletManagers[currency.code] {
             let accountViewController = AccountViewController(currency: currency, walletManager: walletManager)

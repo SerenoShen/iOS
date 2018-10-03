@@ -27,8 +27,8 @@ class AddressCell : UIView {
     }
 
     let textField = UITextField()
-    let paste = BRDButton(title: S.Send.pasteLabel, type: .tertiary)
-    let scan = BRDButton(title: S.Send.scanLabel, type: .tertiary)
+    let paste = SUNButton(title: S.Send.pasteLabel, type: .tertiary)
+    let scan = SUNButton(title: S.Send.scanLabel, type: .tertiary)
     fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()

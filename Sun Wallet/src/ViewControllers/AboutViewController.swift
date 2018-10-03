@@ -4,7 +4,7 @@ import SafariServices
 class AboutViewController : UIViewController {
 
     private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout").withRenderingMode(.alwaysTemplate))
+    private let logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
     private let logoBackground = MotionGradientView()
     private let walletID = WalletIDCell()
     private let blog = AboutCell(text: S.About.blog)
@@ -79,7 +79,7 @@ class AboutViewController : UIViewController {
 
     private func setActions() {
         blog.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://sunwallet/blog/")
+            myself.presentURL(string: "https://sunwallet.com/blog/")
         }
         twitter.button.tap = strongify(self) { myself in
             myself.presentURL(string: "https://twitter.com/sunwalletapp")
@@ -88,7 +88,7 @@ class AboutViewController : UIViewController {
             myself.presentURL(string: "https://reddit.com/r/sunwallet/")
         }
         privacy.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://breadapp.com/privacypolicy")
+            myself.presentURL(string: "https://sunwallet.com/privacypolicy")
         }
     }
 

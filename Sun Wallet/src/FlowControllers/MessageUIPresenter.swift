@@ -20,9 +20,9 @@ class MessageUIPresenter: NSObject, Trackable {
         UINavigationBar.appearance().titleTextAttributes = nil
         let emailView = MFMailComposeViewController()
         emailView.setToRecipients([C.iosEmail])
-        emailView.setSubject("BRD Logs")
-        emailView.setMessageBody("BRD Logs", isHTML: false)
-        emailView.addAttachmentData(logData, mimeType: "text/plain", fileName: "brd_logs.txt")
+        emailView.setSubject("Sun Wallet Logs")
+        emailView.setMessageBody("Sun Wallet Logs", isHTML: false)
+        emailView.addAttachmentData(logData, mimeType: "text/plain", fileName: "sunwallet_logs.txt")
         emailView.mailComposeDelegate = self
         present(emailView)
     }
