@@ -39,7 +39,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     private var rate: Rate? {
         didSet { reload() }
     }
-    private let emptyMessage = UILabel.wrapping(font: .customBody(size: 16.0), color: .grayTextTint)
+    private let emptyMessage = UILabel.wrapping(font: .customBody(size: 16.0), color: UIColor(named: "grayTextTint") ?? .gray)
     
     //TODO:BCH replace with recommend rescan / tx failed prompt
     private var currentPrompt: Prompt? {
@@ -68,7 +68,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = UIColor(named: "whiteTint")
         
         emptyMessage.textAlignment = .center
         emptyMessage.text = S.TransactionDetails.emptyMessage

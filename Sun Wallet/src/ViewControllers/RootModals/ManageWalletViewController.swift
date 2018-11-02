@@ -3,10 +3,10 @@ import UIKit
 class ManageWalletViewController : UIViewController, ModalPresentable, Subscriber {
 
     var parentView: UIView? //ModalPresentable
-    private let textFieldLabel = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let textFieldLabel = UILabel(font: .customBold(size: 14.0), color: UIColor(named: "grayTextTint")!)
     private let textField = UITextField()
-    private let separator = UIView(color: .secondaryShadow)
-    fileprivate let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
+    private let separator = UIView(color: UIColor(named: "secondaryShadow")!)
+    fileprivate let body = UILabel.wrapping(font: .customBody(size: 13.0), color: UIColor(named: "secondaryGrayText")!)
     fileprivate let maxWalletNameLength = 20
 
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class ManageWalletViewController : UIViewController, ModalPresentable, Subscribe
 
     private func setData() {
         view.backgroundColor = .white
-        textField.textColor = .darkText
+        textField.textColor = UIColor(named: "darkText")
         textField.font = .customBody(size: 14.0)
         textField.returnKeyType = .done
         textFieldLabel.text = S.ManageWallet.textFieldLabel

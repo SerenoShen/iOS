@@ -73,21 +73,21 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             }))
             recover.addCloseNavigationItem()
             nc.viewControllers = [recover]
-            nc.navigationBar.tintColor = .darkText
+            nc.navigationBar.tintColor = UIColor(named: "darkText")
             nc.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.darkText,
+                NSAttributedStringKey.foregroundColor: UIColor(named: "darkText"),
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
             ]
             nc.setClearNavbar()
             nc.navigationBar.isTranslucent = false
-            nc.navigationBar.barTintColor = .whiteTint
+            nc.navigationBar.barTintColor = UIColor(named: "whiteTint")
             nc.viewControllers = [recover]
             self?.present(nc, animated: true, completion: nil)
         }
         Store.subscribe(self, name: .loginFromSend, callback: {_ in
             self.authenticationSucceded()
         })
-        logo.tintColor = .darkBackground
+        logo.tintColor = UIColor(named: "darkBackground")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -131,7 +131,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     private func addConstraints() {
         backgroundView.constrain(toSuperviewEdges: nil)
-        backgroundView.backgroundColor = .darkBackground
+        backgroundView.backgroundColor = UIColor(named: "darkBackground")
         pinViewContainer.constrain(toSuperviewEdges: nil)
         topControlTop = logoBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: topControlHeight + (E.isIPhoneX ? C.padding[9] + 35.0 : C.padding[9] + 20.0))
         logoBackground.constrain([

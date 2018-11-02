@@ -1,0 +1,17 @@
+import Foundation
+
+let segmentWriteKey = "XH2l6b3nKniFJ3q5rtUY9skD2hvYaUDv"
+let appsFlyerDevKey = "BzWcFLsYyE87vCB6AqKbQG"
+let appleAppID = "1437716766"
+let lokaliseAPIToken = "977567f3f31bcab6a183973e61fb0cf17e0cf49f"
+let lokaliseProjectID = "633386625bafa36bcd7a33.90054023"
+let bitcoinAddress = "3AoXrR1Dd2g6m9E96uMSbFNe2Z8DH7xXJH"
+let bitcoinCashAddress = ""
+let ethereumAddress = "0x5d27f70bDF90Ce9b73D303187bd0bF1a65528eBd"
+let moneroAddress = ""
+let rippleAddress = ""
+let instabugAPIKey = "ed8429c63ea9239951e09a9b7372924f"
+let zendeskAppID = "d0e506f7d7eeed229616a010504911c9bb0c328b47d01a16"
+let clientID = "mobile_sdk_client_2a99c8557e1759c7f3fc"
+let zendeskURL = "https://sunwallet.zendesk.com"
+let appseeAPIKey = "5ca47983304a4426afa5096a3aebd26e"

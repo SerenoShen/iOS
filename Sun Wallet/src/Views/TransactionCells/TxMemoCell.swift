@@ -5,7 +5,7 @@ class TxMemoCell: TxDetailRowCell {
     // MARK: - Views
     
     fileprivate let textView = UITextView()
-    fileprivate let placeholderLabel = UILabel(font: .customBody(size: 14.0), color: .lightGray)
+    fileprivate let placeholderLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "lightGray") ?? .lightGray)
     
     // MARK: - Vars
 
@@ -43,7 +43,7 @@ class TxMemoCell: TxDetailRowCell {
         super.setupStyle()
 
         textView.font = .customBody(size: 14.0)
-        textView.textColor = .darkGray
+        textView.textColor = UIColor(named: "darkGray")
         textView.textAlignment = .right
         textView.isScrollEnabled = false
         textView.returnKeyType = .done

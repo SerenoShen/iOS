@@ -66,9 +66,9 @@ class TxAmountCell: UITableViewCell, Subscriber {
         
         let largeFont = UIFont.customBody(size: 26.0)
         let smallFont = UIFont.customBody(size: 14.0)
-        let fiatColor = UIColor.mediumGray
-        let textColor = UIColor.lightGray
-        let tokenColor: UIColor = (viewModel.direction == .received) ? .receivedGreen : .darkGray
+        let fiatColor = UIColor(named: "mediumGray")
+        let textColor = UIColor(named: "lightGray")
+        let tokenColor: UIColor = (viewModel.direction == .received) ? UIColor(named: "receivedGreen")  ?? .green : UIColor(named: "darkGray")  ?? .gray
         
         let amountText = NSMutableAttributedString(string: viewModel.amount,
                                                    attributes: [.font: largeFont,

@@ -37,7 +37,7 @@ class PinView : UIView {
             unFilled = (0...(length-1)).map { _ in ClearCircle(style: .unfilled) }
         case .verify:
             filled = (0...(length-1)).map { _ in Circle(color: .black, style: .filled) }
-            unFilled = (0...(length-1)).map { _ in Circle(color: .borderGray, style: .filled) }
+            unFilled = (0...(length-1)).map { _ in Circle(color: UIColor(named: "borderGray") ?? .gray, style: .filled) }
         }
 
         super.init(frame: CGRect())

@@ -7,7 +7,7 @@ class SecurityCenterCell : UIControl {
     //MARK: - Public
     var isCheckHighlighted: Bool = false {
         didSet {
-            check.tintColor = isCheckHighlighted ? .primaryButton : .grayTextTint
+            check.tintColor = isCheckHighlighted ? UIColor(named: "primaryButton")  : UIColor(named: "grayTextTint")
         }
     }
 
@@ -53,7 +53,7 @@ class SecurityCenterCell : UIControl {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = .secondaryButton
+                backgroundColor = UIColor(named: "primaryText")
             } else {
                 backgroundColor = .white
             }
@@ -62,7 +62,7 @@ class SecurityCenterCell : UIControl {
 
     private let title = UILabel(font: .customBold(size: 13.0))
     private let descriptionLabel = UILabel(font: .customBody(size: 13.0))
-    private let separator = UIView(color: .secondaryShadow)
+    private let separator = UIView(color: UIColor(named: "secondaryShadow")!)
     private let check = UIButton(type: .system)
 
     required init?(coder aDecoder: NSCoder) {

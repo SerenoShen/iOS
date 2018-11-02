@@ -33,7 +33,7 @@ class WalletDisabledView : UIView {
         }
     }
 
-    private let label = UILabel(font: .customBold(size: 20.0), color: .darkText)
+    private let label = UILabel(font: .customBold(size: 20.0), color: UIColor(named: "darkText")  ?? .black)
     private let faq: UIButton
     private let blur: UIVisualEffectView
     private let reset = SUNButton(title: S.UnlockScreen.resetPin, type: .blackTransparent)

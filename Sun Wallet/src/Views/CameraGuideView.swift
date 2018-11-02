@@ -9,9 +9,9 @@ enum CameraGuideState {
 
     var color: UIColor {
         switch self {
-        case .normal: return .darkLine
-        case .negative: return .cameraGuideNegative
-        case .positive: return .cameraGuidePositive
+        case .normal: return UIColor(named: "darkLine") ?? .black
+        case .negative: return UIColor(named: "cameraGuideNegative") ?? .red
+        case .positive: return UIColor(named: "cameraGuidePositive") ?? .green
         }
     }
 }

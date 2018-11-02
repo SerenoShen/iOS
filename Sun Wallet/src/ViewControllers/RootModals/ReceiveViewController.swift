@@ -109,11 +109,11 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func setStyle() {
         view.backgroundColor = .white
-        address.textColor = .grayTextTint
+        address.textColor = UIColor(named: "grayTextTint")
         address.textAlignment = .center
         address.adjustsFontSizeToFitWidth = true
         address.minimumScaleFactor = 0.7
-        border.backgroundColor = .secondaryBorder
+        border.backgroundColor = UIColor(named: "secondaryBorder")
         share.isToggleable = true
         if !isRequestAmountVisible {
             border.isHidden = true
@@ -124,7 +124,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             requestBottom?.constant = 0.0
         }
         sharePopout.clipsToBounds = true
-        addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryShadow), for: .highlighted)
+        addressButton.setBackgroundImage(UIImage.imageForColor(UIColor(named: "secondaryShadow") ?? .white), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
         setReceiveAddress()

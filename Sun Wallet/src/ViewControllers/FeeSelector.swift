@@ -19,8 +19,8 @@ class FeeSelector : UIView {
         NSLayoutConstraint.activate([bottomConstraint])
     }
 
-    private let header = UILabel(font: .customMedium(size: 16.0), color: .darkText)
-    private let subheader = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
+    private let header = UILabel(font: .customMedium(size: 16.0), color: UIColor(named: "darkText") ?? .black)
+    private let subheader = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
     private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: .red)
     private let control = UISegmentedControl(items: [S.FeeSelector.regular, S.FeeSelector.economy])
     private var bottomConstraint: NSLayoutConstraint?

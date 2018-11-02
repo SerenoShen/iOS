@@ -4,7 +4,7 @@ extension UINavigationController {
 
     func setDefaultStyle() {
         setClearNavbar()
-        navigationBar.tintColor = .darkText
+        navigationBar.tintColor = UIColor(named: "darkText")
         navigationBar.titleTextAttributes = [
             NSAttributedStringKey.font: UIFont.header
         ]
@@ -21,8 +21,8 @@ extension UINavigationController {
     func setDarkStyle() {
         navigationBar.isTranslucent = false
         navigationBar.barStyle = .blackOpaque
-        navigationBar.barTintColor = .navigationBackground
-        navigationBar.tintColor = .navigationTint
+        navigationBar.barTintColor = UIColor(named: "navigationBackground")
+        navigationBar.tintColor = UIColor(named: "navigationTint")
         navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont.header

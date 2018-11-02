@@ -80,11 +80,11 @@ import WebKit
         let request = URLRequest(url: indexUrl)
         
         view = UIView(frame: CGRect.zero)
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         
         webView = WKWebView(frame: CGRect.zero, configuration: config)
         webView?.navigationDelegate = self
-        webView?.backgroundColor = .darkBackground
+        webView?.backgroundColor = UIColor(named: "darkBackground")
         webView?.alpha = 0.0
         _ = webView?.load(request)
         webView?.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]

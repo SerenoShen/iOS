@@ -9,11 +9,11 @@ class WhiteDecimalPad : GenericPinPadCell {
 
     override func setAppearance() {
         if isHighlighted {
-            label.backgroundColor = .secondaryShadow
-            label.textColor = .darkText
+            label.backgroundColor = UIColor(named: "secondaryShadow")
+            label.textColor = UIColor(named: "darkText")
         } else {
             label.backgroundColor = .white
-            label.textColor = .grayTextTint
+            label.textColor = UIColor(named: "grayTextTint")
         }
     }
 

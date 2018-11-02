@@ -110,7 +110,7 @@ class AlertView : UIView, GradientDrawable {
         header.textColor = .white
 
         icon.backgroundColor = .clear
-        separator.backgroundColor = .transparentWhite
+        separator.backgroundColor = UIColor(named: "transparentWhite")
 
         subheader.text = type.subheader
         subheader.textAlignment = .center

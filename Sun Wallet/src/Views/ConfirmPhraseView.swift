@@ -23,7 +23,7 @@ class ConfirmPhraseView: UIView {
     private func setupSubviews() {
         label.font = UIFont.customBody(size: 14.0)
         label.textColor = UIColor(white: 170.0/255.0, alpha: 1.0)
-        separator.backgroundColor = .separatorGray
+        separator.backgroundColor = UIColor(named: "separatorGray")
 
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
@@ -61,7 +61,7 @@ class ConfirmPhraseView: UIView {
 
     func validate() {
         if textField.text != word {
-            textField.textColor = .cameraGuideNegative
+            textField.textColor = UIColor(named: "cameraGuideNegative")
         }
     }
 

@@ -41,12 +41,12 @@ class EnterPhraseCell : UICollectionViewCell {
     var isWordValid: ((String) -> Bool)?
 
     func disablePreviousButton() {
-        previousField.tintColor = .secondaryShadow
+        previousField.tintColor = UIColor(named: "secondaryShadow")
         previousField.isEnabled = false
     }
 
     func disableNextButton() {
-        nextField.tintColor = .secondaryShadow
+        nextField.tintColor = UIColor(named: "secondaryShadow")
         nextField.isEnabled = false
     }
 
@@ -56,7 +56,7 @@ class EnterPhraseCell : UICollectionViewCell {
     private let nextField = UIButton.icon(image: #imageLiteral(resourceName: "RightArrow"), accessibilityLabel: S.RecoverWallet.rightArrow)
     private let previousField = UIButton.icon(image: #imageLiteral(resourceName: "LeftArrow"), accessibilityLabel: S.RecoverWallet.leftArrow)
     private let done = UIButton(type: .system)
-    fileprivate let separator = UIView(color: .secondaryShadow)
+    fileprivate let separator = UIView(color: UIColor(named: "secondaryShadow")!)
     fileprivate var hasDisplayedInvalidState = false
 
     private func setup() {
@@ -90,15 +90,15 @@ class EnterPhraseCell : UICollectionViewCell {
         textField.addTarget(self, action: #selector(EnterPhraseCell.textChanged(textField:)), for: .editingChanged)
 
         label.textAlignment = .center
-        previousField.tintColor = .secondaryGrayText
-        nextField.tintColor = .secondaryGrayText
+        previousField.tintColor = UIColor(named: "secondaryGrayText")
+        nextField.tintColor = UIColor(named: "secondaryGrayText")
         done.setTitle(S.RecoverWallet.done, for: .normal)
     }
 
     private var accessoryView: UIView {
-        let view = UIView(color: .secondaryButton)
+        let view = UIView(color: UIColor(named: "primaryText")!)
         view.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
-        let topBorder = UIView(color: .secondaryShadow)
+        let topBorder = UIView(color: UIColor(named: "secondaryShadow")!)
         view.addSubview(topBorder)
         view.addSubview(previousField)
         view.addSubview(nextField)
@@ -152,10 +152,10 @@ extension EnterPhraseCell : UITextFieldDelegate {
         guard let word = textField.text else { return }
         if isWordValid(word) || word == "" {
             textField.textColor = .white
-            separator.backgroundColor = .secondaryShadow
+            separator.backgroundColor = UIColor(named: "secondaryShadow")
         } else {
-            textField.textColor = .cameraGuideNegative
-            separator.backgroundColor = .cameraGuideNegative
+            textField.textColor = UIColor(named: "cameraGuideNegative")
+            separator.backgroundColor = UIColor(named: "cameraGuideNegative")
             hasDisplayedInvalidState = true
         }
     }

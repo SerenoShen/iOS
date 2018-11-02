@@ -63,7 +63,7 @@ class ClearCircle : UIView {
         let fillLayer = CAShapeLayer()
         fillLayer.path = overlayPath.cgPath
         fillLayer.fillRule = kCAFillRuleEvenOdd
-        fillLayer.fillColor = UIColor.darkBackground.cgColor
+        fillLayer.fillColor = UIColor(named: "darkBackground")!.cgColor
         layer.sublayers?.forEach {
             $0.removeFromSuperlayer()
         }
@@ -73,7 +73,7 @@ class ClearCircle : UIView {
             let innerCircle = UIBezierPath(ovalIn: centerRect.insetBy(dx: 1.0, dy: 1.0))
             let circleLayer = CAShapeLayer()
             circleLayer.path = innerCircle.cgPath
-            circleLayer.fillColor = UIColor.darkBackground.cgColor
+            circleLayer.fillColor = UIColor(named: "darkBackground")!.cgColor
             layer.addSublayer(circleLayer)
         }
     }

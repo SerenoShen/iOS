@@ -2,9 +2,9 @@ import UIKit
 
 class MenuButton : UIControl {
 
-    private let container = UIView(color: .grayBackground)
+    private let container = UIView(color: UIColor(named: "grayBackground") ?? .gray)
     private let iconView = UIImageView()
-    private let label = UILabel(font: .customBody(size: 16.0), color: .darkGray)
+    private let label = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkGray") ?? .gray)
     private let arrow = UIImageView(image: #imageLiteral(resourceName: "RightArrow").withRenderingMode(.alwaysTemplate))
 
     init(title: String, icon: UIImage) {
@@ -58,16 +58,16 @@ class MenuButton : UIControl {
     private func setupStyle() {
         container.layer.cornerRadius = C.Sizes.roundedCornerRadius
         container.clipsToBounds = true
-        iconView.tintColor = .darkGray
-        arrow.tintColor = .darkGray
+        iconView.tintColor = UIColor(named: "darkGray")
+        arrow.tintColor = UIColor(named: "darkGray")
     }
 
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                container.backgroundColor = .lightGray
+                container.backgroundColor = UIColor(named: "lightGray")
             } else {
-                container.backgroundColor = .grayBackground
+                container.backgroundColor = UIColor(named: "grayBackground")
             }
         }
     }

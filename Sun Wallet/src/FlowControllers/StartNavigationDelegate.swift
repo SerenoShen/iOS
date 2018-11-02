@@ -15,7 +15,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
         }
 
         if viewController is EnterPhraseViewController {
-            navigationController.navigationBar.tintColor = .navigationTint
+            navigationController.navigationBar.tintColor = UIColor(named: "navigationTint")
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -24,7 +24,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
         }
 
         if viewController is UpdatePinViewController {
-            navigationController.navigationBar.tintColor = .navigationTint
+            navigationController.navigationBar.tintColor = UIColor(named: "navigationTint")
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)

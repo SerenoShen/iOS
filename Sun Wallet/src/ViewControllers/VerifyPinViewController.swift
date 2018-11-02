@@ -24,10 +24,10 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     let contentBox = UIView()
     private let success: (String) -> Void
     private let pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0, shouldShowBiometrics: false)
-    private let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
-    private let body = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    private let titleLabel = UILabel(font: .customBold(size: 17.0), color: UIColor(named: "darkText")!)
+    private let body = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText")!)
     private let pinView: PinView
-    private let toolbar = UIView(color: .whiteTint)
+    private let toolbar = UIView(color: UIColor(named: "whiteTint")!)
     private let cancel = UIButton(type: .system)
     private let bodyText: String
     private let pinLength: Int
@@ -86,7 +86,7 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
         contentBox.backgroundColor = .white
         contentBox.layer.cornerRadius = 8.0
         contentBox.layer.borderWidth = 1.0
-        contentBox.layer.borderColor = UIColor.secondaryShadow.cgColor
+        contentBox.layer.borderColor = UIColor(named: "secondaryShadow")!.cgColor
         contentBox.layer.shadowColor = UIColor.black.cgColor
         contentBox.layer.shadowOpacity = 0.15
         contentBox.layer.shadowRadius = 4.0

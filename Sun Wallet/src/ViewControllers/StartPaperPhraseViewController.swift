@@ -12,12 +12,12 @@ class StartPaperPhraseViewController : UIViewController {
     private let button: SUNButton
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "PaperKey"))
     private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: .white)
-    private let header = RadialGradientView(backgroundColor: .pink, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: UIColor(named: "pink") ?? .red, offset: 64.0)
     private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .white)
     private let callback: () -> Void
 
     override func viewDidLoad() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         explanation.text = S.StartPaperPhrase.body
         addSubviews()
         addConstraints()

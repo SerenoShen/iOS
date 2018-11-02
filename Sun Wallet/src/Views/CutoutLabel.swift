@@ -6,7 +6,7 @@ class CutoutLabel: UILabel {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         context.saveGState()
         context.setBlendMode(.clear)
-        UIColor.darkBackground.setFill()
+        (UIColor(named: "darkBackground") ?? .black).setFill()
         UIRectFill(rect)
         super.drawText(in: rect)
         context.restoreGState()

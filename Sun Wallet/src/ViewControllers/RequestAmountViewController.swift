@@ -102,8 +102,8 @@ class RequestAmountViewController : UIViewController {
         address.adjustsFontSizeToFitWidth = true
         address.minimumScaleFactor = 0.7
         address.text = receiveAddress
-        address.textColor = .grayTextTint
-        border.backgroundColor = .secondaryBorder
+        address.textColor = UIColor(named: "grayTextTint")
+        border.backgroundColor = UIColor(named: "secondaryBorder")
         qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
         share.isToggleable = true

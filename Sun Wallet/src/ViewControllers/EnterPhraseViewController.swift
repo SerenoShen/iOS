@@ -24,7 +24,7 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Tracka
     private let walletManager: BTCWalletManager
     private let reason: PhraseEntryReason
     private let enterPhrase: EnterPhraseCollectionViewController
-    private let errorLabel = UILabel.wrapping(font: .customBody(size: 16.0), color: .cameraGuideNegative)
+    private let errorLabel = UILabel.wrapping(font: .customBody(size: 16.0), color: UIColor(named: "cameraGuideNegative")!)
     private let instruction = UILabel(font: .customBold(size: 14.0), color: .white)
     private let subheader = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
     private let faq: UIButton
@@ -94,7 +94,7 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Tracka
     }
 
     private func setInitialData() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         errorLabel.text = S.RecoverWallet.invalid
         errorLabel.isHidden = true
         errorLabel.textAlignment = .center

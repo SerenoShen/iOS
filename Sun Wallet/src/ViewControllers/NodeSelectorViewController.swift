@@ -3,11 +3,11 @@ import BRCore
 
 class NodeSelectorViewController : UIViewController, Trackable {
 
-    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let nodeLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let node = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let statusLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let status = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    let titleLabel = UILabel(font: .customBold(size: 26.0), color: UIColor(named: "darkText") ?? .black)
+    private let nodeLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let node = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
+    private let statusLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let status = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
     private let button: SUNButton
     private let walletManager: BTCWalletManager
     private var okAction: UIAlertAction?
@@ -57,7 +57,7 @@ class NodeSelectorViewController : UIViewController, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = UIColor(named: "whiteTint")
         titleLabel.text = S.NodeSelector.title
         titleLabel.textAlignment = .right
         nodeLabel.text = S.NodeSelector.nodeLabel

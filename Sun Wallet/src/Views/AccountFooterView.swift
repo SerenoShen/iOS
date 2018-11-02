@@ -26,7 +26,7 @@ class AccountFooterView: UIView, Subscriber, Trackable {
     }
 
     private func setup() {
-        let separator = UIView(color: .separatorGray)
+        let separator = UIView(color: UIColor(named: "separatorGray") ?? .gray)
         addSubview(toolbar)
         addSubview(separator)
         
@@ -54,7 +54,7 @@ class AccountFooterView: UIView, Subscriber, Trackable {
                        (S.Button.receive, #selector(AccountFooterView.receive))].map { (title, selector) -> UIBarButtonItem in
                         let button = UIButton.rounded(title: title)
                         button.tintColor = .white
-                        button.backgroundColor = .transparentWhite
+                        button.backgroundColor = UIColor(named: "transparentWhite")
                         button.addTarget(self, action: selector, for: .touchUpInside)
                         return UIBarButtonItem(customView: button)
         }

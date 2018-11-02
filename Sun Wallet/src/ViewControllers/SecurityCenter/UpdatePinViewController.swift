@@ -132,7 +132,7 @@ class UpdatePinViewController : UIViewController, Subscriber {
 
     private func setData() {
         caption.text = S.UpdatePin.caption
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         faq.tintColor = .white
         header.text = isCreatingPin ? S.UpdatePin.createTitle : S.UpdatePin.updateTitle
         instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent

@@ -85,8 +85,8 @@ class Prompt : UIView {
     let continueButton = UIButton.rounded(title: S.Button.continueAction)
     let type: PromptType
     
-    private let title = UILabel(font: .customBold(size: 16.0), color: .darkGray)
-    private let body = UILabel.wrapping(font: .customBody(size: 14.0), color: .darkGray)
+    private let title = UILabel(font: .customBold(size: 16.0), color: UIColor(named: "darkGray")!)
+    private let body = UILabel.wrapping(font: .customBody(size: 14.0), color: UIColor(named: "darkGray")!)
     private let container = UIView()
 
     private func setup() {
@@ -133,12 +133,12 @@ class Prompt : UIView {
     }
     
     private func setupStyle() {
-        dismissButton.backgroundColor = .lightGray
+        dismissButton.backgroundColor = UIColor(named: "lightGray")
         dismissButton.setTitleColor(.white, for: .normal)
-        continueButton.backgroundColor = .statusIndicatorActive
+        continueButton.backgroundColor = UIColor(named: "statusIndicatorActive")
         continueButton.setTitleColor(.white, for: .normal)
         
-        container.backgroundColor = .whiteBackground
+        container.backgroundColor = UIColor(named: "whiteBackground")
         container.layer.cornerRadius = 4.0
         container.layer.shadowRadius = 4.0
         container.layer.shadowColor = UIColor.black.cgColor

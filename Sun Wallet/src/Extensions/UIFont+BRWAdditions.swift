@@ -21,14 +21,14 @@ extension UIFont {
     static var regularAttributes: [NSAttributedStringKey: Any] {
         return [
             NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
-            NSAttributedStringKey.foregroundColor: UIColor.darkText
+            NSAttributedStringKey.foregroundColor: UIColor(named: "darkText")
         ]
     }
 
     static var boldAttributes: [NSAttributedStringKey: Any] {
         return [
             NSAttributedStringKey.font: UIFont.customBold(size: 14.0),
-            NSAttributedStringKey.foregroundColor: UIColor.darkText
+            NSAttributedStringKey.foregroundColor: UIColor(named: "darkText")
         ]
     }
 }

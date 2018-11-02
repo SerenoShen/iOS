@@ -11,11 +11,10 @@ target 'Sun Wallet' do
   pod 'OneSignal' #Push Notifications
   pod 'BoundlessKit' #Engagement SDK
   pod 'ZendeskSDK' #Support SDK
+  pod 'Appsee'
   
-  pod 'lottie-ios'
-
   #Crypto
-  #pod 'XMRMiner'
+  pod 'XMRMiner'
   pod 'Cryptex'
   #pod 'StellarKit'
   #pod 'stellar-ios-mac-sdk'
@@ -30,20 +29,18 @@ target 'Sun Wallet' do
   pod 'UserInterface'
   pod 'XLPagerTabStrip' #Paging Tabbar
   pod 'ESTabBarController-swift' #TabBar Controller
-#pod 'BulletinBoard' #Popup View
-#pod "DownloadButton" #Progress Download Button
+  pod 'Cards' #App Store-like Cards
+  pod 'BulletinBoard' #Popup View
+
 #pod 'ProgressMeter'
 #pod 'Sparrow', :git => 'https://github.com/IvanVorobei/Sparrow.git'
 pod 'HGPlaceholders'
 #pod 'EMSpinnerButton'
 #pod 'DOFavoriteButton', :git => 'https://github.com/fumiyasac/DOFavoriteButton.git', :branch => 'master'
-#pod 'Cards' #App Store-like Cards
 #pod 'SRScratchView' #Scratch Card Lottery View
 #pod "TapCardView", :git => "https://github.com/shima11/TapCardView.git"
 #pod 'SANotificationViews'
 #pod 'StatusAlert'
-#pod 'PanelKit' #Movable Windows for iPad
-#pod 'Mandoline', :git => 'https://github.com/fpg1503/Mandoline.git', :branch => 'RemoveSnapKit'
 #pod 'PopupDialog'
 #pod 'SVProgressHUD'
 #pod 'Gallery'
@@ -62,16 +59,15 @@ pod 'HGPlaceholders'
 
 
 ##Tools
-#pod 'SwiftTheme' #Theme
+pod 'SwiftTheme' #Theme
 #pod 'GroupWork'
 #pod 'Static' #Static TableViews
 #pod 'Thingy' #Device Detection
 #pod 'Hue'
 pod 'SwiftReorder'
 #pod 'Disk' #Offline Cache
-#pod 'JTAppleCalendar' #Calendar UI
 #pod 'Eureka'
-#pod 'SwiftyStoreKit' #In-App Purchase Framework
+pod 'SwiftyStoreKit' #In-App Purchase Framework
 #pod 'AAInfographics'
 #pod 'TinyConstraints'
 pod 'SwiftLint'

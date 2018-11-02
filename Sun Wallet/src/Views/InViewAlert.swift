@@ -77,7 +77,7 @@ class InViewAlert: UIView {
             topBorder.addLine(to: CGPoint(x: center + arrowWidth/2.0 + 0.5, y: arrowHeight + 0.5))
             topBorder.addLine(to: CGPoint(x: rect.width + 0.5, y: arrowHeight + 0.5))
             context?.setLineWidth(1.0)
-            context?.setStrokeColor(UIColor.secondaryShadow.cgColor)
+            context?.setStrokeColor((UIColor(named: "secondaryShadow") ?? .black).cgColor)
             context?.addPath(topBorder)
             context?.strokePath()
         }
@@ -86,9 +86,9 @@ class InViewAlert: UIView {
     private var fillColor: UIColor {
         switch type {
         case .primary:
-            return .primaryButton
+            return UIColor(named: "primaryButton") ?? .white
         case .secondary:
-            return .grayBackgroundTint
+            return UIColor(named: "grayBackgroundTint") ?? .gray
         }
     }
 

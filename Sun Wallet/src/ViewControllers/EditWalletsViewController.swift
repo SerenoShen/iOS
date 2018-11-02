@@ -56,9 +56,9 @@ class EditWalletsViewController : UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         view.addSubview(tableView)
-        tableView.backgroundColor = .darkBackground
+        tableView.backgroundColor = UIColor(named: "darkBackground")
         tableView.keyboardDismissMode = .interactive
         tableView.separatorStyle = .none
         tableView.rowHeight = 66.0
@@ -108,7 +108,7 @@ class EditWalletsViewController : UIViewController {
         searchBar.searchBarStyle = .minimal
         searchBar.barStyle = .black
         searchBar.isTranslucent = false
-        searchBar.barTintColor = .darkBackground
+        searchBar.barTintColor = UIColor(named: "darkBackground")
         searchBar.placeholder = S.Search.search
     }
 
@@ -116,8 +116,8 @@ class EditWalletsViewController : UIViewController {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 70.0))
         tableView.tableFooterView = footerView
         let addButton = UIButton.icon(image: #imageLiteral(resourceName: "add"), title: S.TokenList.addTitle)
-        addButton.tintColor = .disabledWhiteText
-        addButton.setTitleColor(.disabledWhiteText, for: .normal)
+        addButton.tintColor = UIColor(named: "disabledWhiteText")
+        addButton.setTitleColor(UIColor(named: "disabledWhiteText"), for: .normal)
         footerView.addSubview(addButton)
         addButton.constrain(toSuperviewEdges: UIEdgeInsets.init(top: 10, left: 0, bottom: 10, right: 0))
         addButton.tap = {

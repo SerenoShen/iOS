@@ -62,12 +62,12 @@ class AmountViewController : UIViewController, Trackable {
     private var pinPadHeight: NSLayoutConstraint?
     private var feeSelectorHeight: NSLayoutConstraint?
     private var feeSelectorTop: NSLayoutConstraint?
-    private let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayTextTint)
-    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .darkText)
+    private let placeholder = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: UIColor(named: "darkText") ?? .black)
     private let pinPad: PinPadViewController
     private let currencyToggle: SUNButton
-    private let border = UIView(color: .secondaryShadow)
-    private let bottomBorder = UIView(color: .secondaryShadow)
+    private let border = UIView(color: UIColor(named: "secondaryShadow") ?? .black)
+    private let bottomBorder = UIView(color: UIColor(named: "secondaryShadow") ?? .black)
     private let cursor = BlinkingView(blinkColor: C.defaultTintColor)
     private let balanceLabel = UILabel()
     private let feeLabel = UILabel()
@@ -201,7 +201,7 @@ class AmountViewController : UIViewController, Trackable {
         }
         editFee.setImage(#imageLiteral(resourceName: "Edit"), for: .normal)
         editFee.imageEdgeInsets = UIEdgeInsetsMake(15.0, 15.0, 15.0, 15.0)
-        editFee.tintColor = .grayTextTint
+        editFee.tintColor = UIColor(named: "grayTextTint")
         editFee.isHidden = true
         feeLabel.numberOfLines = 0
         feeLabel.lineBreakMode = .byWordWrapping

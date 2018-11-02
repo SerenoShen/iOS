@@ -12,7 +12,7 @@ class StartViewController : UIViewController {
     //MARK: - Private
     private let logoBackground = MotionGradientView()
     private let messageBackground = MotionGradientView()
-    private let message = CutoutLabel(font: .customMedium(size: 18.0), color: .whiteTint)
+    private let message = CutoutLabel(font: .customMedium(size: 18.0), color: UIColor(named: "whiteTint")!)
     private let create = SUNButton(title: S.StartViewController.createButton, type: .primary)
     private let recover = SUNButton(title: S.StartViewController.recoverButton, type: .secondaryTransparent)
     private let didTapRecover: () -> Void
@@ -21,12 +21,12 @@ class StartViewController : UIViewController {
     private var logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
 
     override func viewDidLoad() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         setData()
         addSubviews()
         addConstraints()
         addButtonActions()
-        logo.tintColor = .darkBackground
+        logo.tintColor = UIColor(named: "darkBackground")
     }
 
     private func setData() {

@@ -16,7 +16,7 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
     private let conversionSymbol = UIImageView(image: #imageLiteral(resourceName: "conversion"))
     private let currencyTapView = UIView()
     private let syncView: SyncingHeaderView
-    private let modeLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
+    private let modeLabel = UILabel(font: .customBody(size: 12.0), color: UIColor(named: "transparentWhiteText") ?? .white) // debug info
     private var regularConstraints: [NSLayoutConstraint] = []
     private var swappedConstraints: [NSLayoutConstraint] = []
     private var syncViewHeight: NSLayoutConstraint?
@@ -111,12 +111,12 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
         currencyName.textAlignment = .center
         currencyName.text = currency.name
         
-        exchangeRateLabel.textColor = .transparentWhiteText
+        exchangeRateLabel.textColor = UIColor(named: "transparentWhiteText") ?? .white
         exchangeRateLabel.textAlignment = .center
         
-        balanceLabel.textColor = .transparentWhiteText
+        balanceLabel.textColor = UIColor(named: "transparentWhiteText") ?? .white
         balanceLabel.text = S.Account.balance
-        conversionSymbol.tintColor = .whiteTint
+        conversionSymbol.tintColor = UIColor(named: "whiteTint")
         
         primaryBalance.textAlignment = .right
         secondaryBalance.textAlignment = .right
@@ -332,7 +332,7 @@ private extension UILabel {
     
     func makeSecondary() {
         font = UIFont.customBody(size: largeFontSize)
-        textColor = .transparentWhiteText
+        textColor = UIColor(named: "transparentWhiteText")
         shrink()
     }
     

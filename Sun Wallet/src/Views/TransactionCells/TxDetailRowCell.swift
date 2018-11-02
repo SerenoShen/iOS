@@ -17,7 +17,7 @@ class TxDetailRowCell: UITableViewCell {
     
     internal let container = UIView()
     internal let titleLabel = UILabel(font: UIFont.customBody(size: 14.0))
-    internal let separator = UIView(color: .secondaryShadow)
+    internal let separator = UIView(color: UIColor(named: "secondaryShadow") ?? .black)
     
     // MARK: - Init
     
@@ -54,7 +54,7 @@ class TxDetailRowCell: UITableViewCell {
     }
     
     internal func setupStyle() {
-        titleLabel.textColor = .lightGray
+        titleLabel.textColor = UIColor(named: "lightGray")
     }
     
     required init?(coder aDecoder: NSCoder) {

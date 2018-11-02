@@ -17,7 +17,7 @@ class ClearNumberPad : GenericPinPadCell {
     override func setAppearance() {
         label.textColor = .clear
         if isHighlighted {
-            backgroundColor = .transparentBlack
+            backgroundColor = UIColor(named: "transparentBlack")
         } else {
             if text == "" {
                 backgroundColor = .clear
@@ -29,7 +29,7 @@ class ClearNumberPad : GenericPinPadCell {
                 }
             } else if let text = text, PinPadViewController.SpecialKeys(rawValue: text) != nil {
                 backgroundColor = .clear
-                imageView.tintColor = .darkBackground
+                imageView.tintColor = UIColor(named: "darkBackground")
                 imageView.backgroundColor = .clear
                 label.isHidden = true
                 masks.forEach {

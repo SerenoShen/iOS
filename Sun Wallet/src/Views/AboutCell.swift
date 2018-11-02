@@ -11,8 +11,8 @@ class AboutCell : UIView {
         setup()
     }
 
-    private let label = UILabel(font: .customBody(size: 16.0), color: .darkText)
-    private let separator = UIView(color: .secondaryShadow)
+    private let label = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkText")!)
+    private let separator = UIView(color: UIColor(named: "secondaryShadow")!)
 
     private func setup() {
         addSubview(label)
@@ -48,8 +48,8 @@ class WalletIDCell: UIView {
     }
     
     private let button: UIButton
-    private let label = UILabel(font: .customBody(size: 16.0), color: .darkText)
-    private let separator = UIView(color: .secondaryShadow)
+    private let label = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkText")!)
+    private let separator = UIView(color: UIColor(named: "secondaryShadow")!)
     
     private func setup() {
         addSubview(label)
@@ -75,7 +75,7 @@ class WalletIDCell: UIView {
         button.setTitle(S.URLHandling.copy, for: .normal)
         let title = NSMutableAttributedString(string: S.About.walletID)
         if let walletID = Store.state.walletID {
-            title.append(NSAttributedString(string: "\n\(walletID)", attributes: [.foregroundColor: UIColor.darkGray]))
+            title.append(NSAttributedString(string: "\n\(walletID)", attributes: [.foregroundColor: UIColor(named: "darkGray")]))
             button.tap = { [unowned self] in
                 self.button.tempDisable()
                 Store.trigger(name: .lightWeightAlert(S.Receive.copied))

@@ -23,7 +23,7 @@ class MotionGradientView : UIView {
 
 class MotionGradientLayer : CAGradientLayer {
 
-    private var gradientColors = [UIColor.newGradientEnd.cgColor, UIColor.newGradientStart.cgColor]
+    private var gradientColors = [UIColor(named: "newGradientStart")!.cgColor, UIColor(named: "newGradientEnd")!.cgColor]
     private var motion: CMMotionManager?
 
     override init() {

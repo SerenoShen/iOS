@@ -17,7 +17,7 @@ class ConfirmPaperPhraseViewController : UIViewController {
     lazy private var confirmFirstPhrase: ConfirmPhraseView = { ConfirmPhraseView(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.0 + 1)"), word: self.words[self.indices.0]) }()
     lazy private var confirmSecondPhrase: ConfirmPhraseView = { ConfirmPhraseView(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.1 + 1)"), word: self.words[self.indices.1]) }()
     private let submit = SUNButton(title: S.Button.submit, type: .primary)
-    private let header = RadialGradientView(backgroundColor: .pink)
+    private let header = RadialGradientView(backgroundColor: UIColor(named: "pink")!)
     private let pin: String
     private let walletManager: BTCWalletManager
     private let callback: () -> Void
@@ -43,7 +43,7 @@ class ConfirmPaperPhraseViewController : UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         label.text = S.ConfirmPaperPhrase.label
         label.textColor = .white
         

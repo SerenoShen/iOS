@@ -135,7 +135,7 @@ class SearchHeaderView : UIView {
     }
 
     private func setData() {
-        backgroundColor = .whiteTint
+        backgroundColor = UIColor(named: "whiteTint")
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
         cancel.tap = { [weak self] in

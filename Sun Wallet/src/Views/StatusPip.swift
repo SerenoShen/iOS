@@ -43,7 +43,7 @@ class StatusPip: UIView {
     
     // MARK: Init
 
-    init(onColor: UIColor = .statusIndicatorActive, offColor: UIColor = .grayBackground) {
+    init(onColor: UIColor = UIColor(named: "statusIndicatorActive")!, offColor: UIColor = UIColor(named: "grayBackground")!) {
         self.state = .off
         self.offColor = offColor
         super.init(frame: .zero)

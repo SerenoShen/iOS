@@ -35,7 +35,7 @@ extension UIButton {
         button.titleLabel?.font = UIFont.customMedium(size: 16.0)
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.borderColor = UIColor(named: "blue")!.cgColor
         return button
     }
 
@@ -63,7 +63,7 @@ extension UIButton {
             button.imageEdgeInsets = UIEdgeInsetsMake(12.0, 12.0, 12.0, 12.0)
         }
 
-        button.tintColor = .darkText
+        button.tintColor = UIColor(named: "darkText")
         button.accessibilityLabel = accessibilityLabel
         return button
     }

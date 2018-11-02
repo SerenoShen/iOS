@@ -37,7 +37,7 @@ class TxLabelCell: TxDetailRowCell {
     
     override func setupStyle() {
         super.setupStyle()
-        valueLabel.textColor = .darkGray
+        valueLabel.textColor = UIColor(named: "darkGray")
         valueLabel.textAlignment = .right
     }
 }

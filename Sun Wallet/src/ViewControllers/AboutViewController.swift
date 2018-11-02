@@ -3,7 +3,7 @@ import SafariServices
 
 class AboutViewController : UIViewController {
 
-    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
+    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: UIColor(named: "darkText")!)
     private let logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
     private let logoBackground = MotionGradientView()
     private let walletID = WalletIDCell()
@@ -11,7 +11,7 @@ class AboutViewController : UIViewController {
     private let twitter = AboutCell(text: S.About.twitter)
     private let reddit = AboutCell(text: S.About.reddit)
     private let privacy = UIButton(type: .system)
-    private let footer = UILabel(font: .customBody(size: 13.0), color: .secondaryGrayText)
+    private let footer = UILabel(font: .customBody(size: 13.0), color: UIColor(named: "secondaryGrayText")!)
     override func viewDidLoad() {
         addSubviews()
         addConstraints()
@@ -66,8 +66,8 @@ class AboutViewController : UIViewController {
     }
 
     private func setData() {
-        view.backgroundColor = .whiteTint
-        logo.tintColor = .whiteTint
+        view.backgroundColor = UIColor(named: "whiteTint")
+        logo.tintColor = UIColor(named: "whiteTint")
         titleLabel.text = S.About.title
         privacy.setTitle(S.About.privacy, for: .normal)
         privacy.titleLabel?.font = UIFont.customBody(size: 13.0)

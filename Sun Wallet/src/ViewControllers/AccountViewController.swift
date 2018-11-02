@@ -156,7 +156,7 @@ class AccountViewController : UIViewController, Subscriber {
     }
     
     private func addTransactionsView() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = UIColor(named: "whiteTint")
         addChildViewController(transactionsTableView, layout: {
             transactionsTableView.view.constrain([
                 transactionsTableView.view.topAnchor.constraint(equalTo: headerContainer.bottomAnchor),

@@ -27,7 +27,7 @@ extension UIViewController {
         if let color = tintColor {
             close.tintColor = color
         } else {
-            close.tintColor = .navigationTint
+            close.tintColor = UIColor(named: "navigationTint")
         }
         switch side {
         case .left:

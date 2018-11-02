@@ -11,12 +11,12 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header = RadialGradientView(backgroundColor: .darkPurple)
+    private let header = RadialGradientView(backgroundColor: UIColor(named: "darkPurple")!)
     private let illustration = LAContext.biometricType() == .face ? UIImageView(image: #imageLiteral(resourceName: "FaceId-Large")) : UIImageView(image: #imageLiteral(resourceName: "TouchId-Large"))
-    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let switchLabel = UILabel(font: .customBold(size: 14.0), color: .darkText)
+    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: UIColor(named: "darkText")!)
+    private let switchLabel = UILabel(font: .customBold(size: 14.0), color: UIColor(named: "darkText")!)
     private let toggle = GradientSwitch()
-    private let separator = UIView(color: .secondaryShadow)
+    private let separator = UIView(color: UIColor(named: "secondaryShadow")!)
     private let textView = UnEditableTextView()
     private let walletManager: BTCWalletManager
     private var rate: Rate?
@@ -88,7 +88,7 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         textView.textContainer.lineFragmentPadding = 0.0
         textView.delegate = self
         textView.attributedText = textViewText
-        textView.tintColor = .primaryButton
+        textView.tintColor = UIColor(named: "primaryButton") ?? .black
         addFaqButton()
         let hasSetToggleInitialValue = false
         Store.subscribe(self, selector: { $0.isBiometricsEnabled != $1.isBiometricsEnabled }, callback: {
@@ -126,7 +126,7 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         let string = "\(String(format: S.TouchIdSettings.spendingLimit, amount.tokenDescription, amount.fiatDescription))\n\n\(String(format: customizeText, linkText))"
         let attributedString = NSMutableAttributedString(string: string, attributes: [
                 NSAttributedStringKey.font: UIFont.customBody(size: 13.0),
-                NSAttributedStringKey.foregroundColor: UIColor.darkText
+                NSAttributedStringKey.foregroundColor: UIColor(named: "darkText")
             ])
         let linkAttributes = [
                 NSAttributedStringKey.font: UIFont.customMedium(size: 13.0),

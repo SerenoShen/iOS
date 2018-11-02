@@ -4,10 +4,10 @@ class TxListCell: UITableViewCell {
 
     // MARK: - Views
     
-    private let timestamp = UILabel(font: .customBody(size: 16.0), color: .darkGray)
-    private let descriptionLabel = UILabel(font: .customBody(size: 14.0), color: .lightGray)
+    private let timestamp = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkGray") ?? .gray)
+    private let descriptionLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "lightGray") ?? .gray)
     private let amount = UILabel(font: .customBold(size: 18.0))
-    private let separator = UIView(color: .separatorGray)
+    private let separator = UIView(color: UIColor(named: "separatorGray") ?? .gray)
     private let statusIndicator = TxStatusIndicator(width: 44.0)
     private let failedIndicator = UIButton(type: .system)
     private var pendingConstraints = [NSLayoutConstraint]()
@@ -114,7 +114,7 @@ class TxListCell: UITableViewCell {
         failedIndicator.setTitle(S.Transaction.failed, for: .normal)
         failedIndicator.titleLabel?.font = .customBold(size: 12.0)
         failedIndicator.setTitleColor(.white, for: .normal)
-        failedIndicator.backgroundColor = .failedRed
+        failedIndicator.backgroundColor = UIColor(named: "failedRed")
         failedIndicator.layer.cornerRadius = 3
     }
     

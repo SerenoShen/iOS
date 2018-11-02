@@ -29,11 +29,11 @@ class AddressCell : UIView {
     let textField = UITextField()
     let paste = SUNButton(title: S.Send.pasteLabel, type: .tertiary)
     let scan = SUNButton(title: S.Send.scanLabel, type: .tertiary)
-    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText")!)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
-    private let border = UIView(color: .secondaryShadow)
+    private let border = UIView(color: UIColor(named: "secondaryShadow")!)
     
     fileprivate let currency: CurrencyDef
 
@@ -94,7 +94,7 @@ class AddressCell : UIView {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.keyboardType = .asciiCapable
-        label.textColor = .grayTextTint
+        label.textColor = UIColor(named: "grayTextTint")
         contentLabel.lineBreakMode = .byTruncatingMiddle
 
         textField.editingChanged = strongify(self) { myself in

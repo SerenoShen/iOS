@@ -22,19 +22,19 @@ class HomeScreenCell : UITableViewCell, Subscriber {
     
     static let cellIdentifier = "CurrencyCell"
 
-    private let iconContainer = UIView(color: .transparentIconBackground)
+    private let iconContainer = UIView(color: UIColor(named: "transparentIconBackground") ?? .white)
     private let icon = UIImageView()
     private let currencyName = UILabel(font: .customBold(size: 18.0), color: .white)
-    private let price = UILabel(font: .customBold(size: 14.0), color: .transparentWhiteText)
+    private let price = UILabel(font: .customBold(size: 14.0), color: UIColor(named: "transparentWhiteText") ?? .white)
     private let fiatBalance = UILabel(font: .customBold(size: 18.0), color: .white)
-    private let tokenBalance = UILabel(font: .customBold(size: 14.0), color: .transparentWhiteText)
+    private let tokenBalance = UILabel(font: .customBold(size: 14.0), color: UIColor(named: "transparentWhiteText") ?? .white)
     private let syncIndicator = SyncingIndicator(style: .home)
     private let container = Background()
     
     private var isSyncIndicatorVisible: Bool = false {
         didSet {
             UIView.crossfade(tokenBalance, syncIndicator, toRight: isSyncIndicatorVisible, duration: isSyncIndicatorVisible == oldValue ? 0.0 : 0.3)
-            fiatBalance.textColor = isSyncIndicatorVisible ? .disabledWhiteText : .white
+            fiatBalance.textColor = isSyncIndicatorVisible ? UIColor(named: "disabledWhiteText") : .white
         }
     }
 

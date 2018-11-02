@@ -41,7 +41,7 @@ struct TxDetailViewModel: TxViewModel {
             let iconString = NSMutableAttributedString(string: S.Symbols.narrowSpace) // space required before an attachment to apply template color (UIKit bug)
             iconString.append(NSAttributedString(attachment: icon))
             attributedString.insert(iconString, at: 0)
-            attributedString.addAttributes([.foregroundColor: UIColor.receivedGreen,
+            attributedString.addAttributes([.foregroundColor: UIColor(named: "receivedGreen"),
                                             .font: UIFont.customBody(size: 0.0)],
                                            range: NSMakeRange(0, iconString.length))
             return attributedString

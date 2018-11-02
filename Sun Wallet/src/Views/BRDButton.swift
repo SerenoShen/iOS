@@ -68,9 +68,9 @@ class SUNButton: UIControl {
             guard isToggleable else { return }
             if type == .tertiary || type == .search {
                 if isSelected {
-                    container.layer.borderColor = UIColor.primaryButton.cgColor
-                    imageView?.tintColor = .primaryButton
-                    label.textColor = .primaryButton
+                    container.layer.borderColor = UIColor(named: "primaryButton")!.cgColor
+                    imageView?.tintColor = UIColor(named: "primaryButton") 
+                    label.textColor = UIColor(named: "primaryButton") 
                 } else {
                     setColors()
                 }
@@ -96,7 +96,7 @@ class SUNButton: UIControl {
 
     private func addContent() {
         addSubview(container)
-        container.backgroundColor = .primaryButton
+        container.backgroundColor = UIColor(named: "primaryButton") 
         container.layer.cornerRadius = cornerRadius
         container.isUserInteractionEnabled = false
         container.constrain(toSuperviewEdges: nil)
@@ -139,42 +139,42 @@ class SUNButton: UIControl {
     private func setColors() {
         switch type {
         case .primary:
-            container.backgroundColor = isEnabled ? .primaryButton : UIColor.lightGray
-            label.textColor = isEnabled ? .primaryText : UIColor.primaryText.withAlphaComponent(0.75)
+            container.backgroundColor = isEnabled ? UIColor(named: "primaryButton")  : UIColor(named: "lightGray")
+            label.textColor = isEnabled ? UIColor(named: "primaryText") : UIColor(named: "primaryText")!.withAlphaComponent(0.75)
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
             imageView?.tintColor = .white
         case .secondary:
-            container.backgroundColor = .secondaryButton
-            label.textColor = .darkText
-            container.layer.borderColor = UIColor.secondaryBorder.cgColor
+            container.backgroundColor = UIColor(named: "primaryText")
+            label.textColor = UIColor(named: "darkText")
+            container.layer.borderColor = UIColor(named: "secondaryBorder")!.cgColor
             container.layer.borderWidth = 1.0
-            imageView?.tintColor = .darkText
+            imageView?.tintColor = UIColor(named: "darkText")
         case .tertiary:
-            container.backgroundColor = .secondaryButton
-            label.textColor = .grayTextTint
-            container.layer.borderColor = UIColor.secondaryBorder.cgColor
+            container.backgroundColor = UIColor(named: "primaryText")
+            label.textColor = UIColor(named: "grayTextTint")
+            container.layer.borderColor = UIColor(named: "secondaryBorder")!.cgColor
             container.layer.borderWidth = 1.0
-            imageView?.tintColor = .grayTextTint
+            imageView?.tintColor = UIColor(named: "grayTextTint")
         case .blackTransparent:
             container.backgroundColor = .clear
-            label.textColor = .darkText
-            container.layer.borderColor = UIColor.darkText.cgColor
+            label.textColor = UIColor(named: "darkText")
+            container.layer.borderColor = UIColor(named: "darkText")!.cgColor
             container.layer.borderWidth = 1.0
-            imageView?.tintColor = .grayTextTint
+            imageView?.tintColor = UIColor(named: "grayTextTint")
         case .secondaryTransparent:
-            container.backgroundColor = .transparentButton
+            container.backgroundColor = UIColor(named: "transparentButton")
             label.textColor = .white
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
             imageView?.tintColor = .white
         case .search:
             label.font = UIFont.customBody(size: 13.0)
-            container.backgroundColor = .secondaryButton
-            label.textColor = .grayTextTint
-            container.layer.borderColor = UIColor.secondaryBorder.cgColor
+            container.backgroundColor = UIColor(named: "primaryText")
+            label.textColor = UIColor(named: "grayTextTint")
+            container.layer.borderColor = UIColor(named: "secondaryBorder")!.cgColor
             container.layer.borderWidth = 1.0
-            imageView?.tintColor = .grayTextTint
+            imageView?.tintColor = UIColor(named: "grayTextTint")
         }
     }
 

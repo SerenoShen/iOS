@@ -4,13 +4,13 @@ class TokenCell : SeparatorCell {
     
     static let cellIdentifier = "TokenCell"
     
-    private let addColor = UIColor.navigationTint
-    private let removeColor = UIColor.orangeButton
+    private let addColor = UIColor(named: "navigationTint")
+    private let removeColor = UIColor(named: "orangeButton")
 
     private let header = UILabel(font: .customBold(size: 18.0), color: UIColor.black)
     private let subheader = UILabel(font: .customBody(size: 14.0), color: UIColor.black)
     private let icon = UIImageView()
-    private let button = ToggleButton(normalTitle: S.TokenList.add, normalColor: .navigationTint, selectedTitle: S.TokenList.hide, selectedColor: .orangeButton)
+    private let button = ToggleButton(normalTitle: S.TokenList.add, normalColor: UIColor(named: "navigationTint")!, selectedTitle: S.TokenList.hide, selectedColor: UIColor(named: "orangeButton")!)
     private var identifier: String = ""
     private var listType: TokenListType = .add
     private var isCurrencyHidden = false

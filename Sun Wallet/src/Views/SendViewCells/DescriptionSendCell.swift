@@ -5,7 +5,7 @@ class DescriptionSendCell : SendCell {
     init(placeholder: String) {
         super.init()
         textView.delegate = self
-        textView.textColor = .darkText
+        textView.textColor = UIColor(named: "darkText")
         textView.font = .customBody(size: 20.0)
         textView.returnKeyType = .done
         self.placeholder.text = placeholder
@@ -23,7 +23,7 @@ class DescriptionSendCell : SendCell {
     }
 
     let textView = UITextView()
-    fileprivate let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayTextTint)
+    fileprivate let placeholder = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "grayTextTint") ?? .gray)
     private func setupViews() {
         textView.isScrollEnabled = false
         addSubview(textView)

@@ -263,7 +263,7 @@ public struct Currencies {
                                 code: "SUN",
                                 symbol: "SUN",
                                 colors: (UIColor.fromHex("FFC93D"), UIColor.fromHex("FFAA27")),
-                                address: E.isTestnet ? "0x7108ca7c4718efa810457f228305c9c71390931a" :  "0x558ec3152e2eb2174905cd19aea4e34a23de9ad6",
+                                address: E.isTestnet ? "0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C" :  "0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C",
                                 abi: ERC20Token.standardAbi,
                                 decimals: 18)
 }

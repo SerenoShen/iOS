@@ -33,19 +33,19 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
     private let cancel = SUNButton(title: S.Button.cancel, type: .secondary)
     private let sendButton = SUNButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
 
-    private let payLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let toLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let amountLabel = UILabel(font: .customBody(size: 16.0), color: .darkText)
-    private let address = UILabel(font: .customBody(size: 16.0), color: .darkText)
+    private let payLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let toLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let amountLabel = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkText") ?? .black)
+    private let address = UILabel(font: .customBody(size: 16.0), color: UIColor(named: "darkText") ?? .black)
 
-    private let processingTime = UILabel.wrapping(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let sendLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let feeLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let totalLabel = UILabel(font: .customMedium(size: 14.0), color: .darkText)
+    private let processingTime = UILabel.wrapping(font: .customBody(size: 14.0), color: UIColor(named: "grayTextTint") ?? .gray)
+    private let sendLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
+    private let feeLabel = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
+    private let totalLabel = UILabel(font: .customMedium(size: 14.0), color: UIColor(named: "darkText") ?? .black)
 
-    private let send = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let fee = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let total = UILabel(font: .customMedium(size: 14.0), color: .darkText)
+    private let send = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
+    private let fee = UILabel(font: .customBody(size: 14.0), color: UIColor(named: "darkText") ?? .black)
+    private let total = UILabel(font: .customMedium(size: 14.0), color: UIColor(named: "darkText") ?? .black)
 
     override func viewDidLoad() {
         addSubviews()

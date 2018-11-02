@@ -131,9 +131,9 @@ class TxDetailViewController: UIViewController, Subscriber {
         container.layer.masksToBounds = true
         
         footer.backgroundColor = .white
-        separator.backgroundColor = .secondaryShadow
-        detailsButton.setTitleColor(.blueButtonText, for: .normal)
-        detailsButton.setTitleColor(.blueButtonText, for: .selected)
+        separator.backgroundColor = UIColor(named: "secondaryShadow")
+        detailsButton.setTitleColor(UIColor(named: "blueButtonText"), for: .normal)
+        detailsButton.setTitleColor(UIColor(named: "blueButtonText"), for: .selected)
         detailsButton.titleLabel?.font = .customBody(size: 16.0)
         
         tableView.tableFooterView = UIView()

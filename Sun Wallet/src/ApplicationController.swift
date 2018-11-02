@@ -9,6 +9,7 @@ class ApplicationController : Subscriber, Trackable {
     let window = UIWindow()
     private var startFlowController: StartFlowPresenter?
     private var modalPresenter: ModalPresenter?
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private var walletManagers = [String: WalletManager]()
     private var walletCoordinator: WalletCoordinator?
     private var exchangeUpdater: ExchangeUpdater?
@@ -16,7 +17,7 @@ class ApplicationController : Subscriber, Trackable {
     private var primaryWalletManager: BTCWalletManager? {
         return walletManagers[Currencies.btc.code] as? BTCWalletManager
     }
-    
+
     private var kvStoreCoordinator: KVStoreCoordinator?
     fileprivate var application: UIApplication?
     private var urlController: URLController?
@@ -158,19 +159,26 @@ class ApplicationController : Subscriber, Trackable {
             }
         }
         updateAssetBundles()
-       /* if !hasPerformedWalletDependentInitialization && didInitWallet {
-            didInitWalletManager()
-        }*/
+        /*let configuration = SEGAnalyticsConfiguration(writeKey: segmentWriteKey)
+         configuration.trackApplicationLifecycleEvents = true
+         configuration.recordScreenViews = true
+         SEGAnalytics.setup(with: configuration)
+
+         Instabug.start(withToken: instabugAPIKey, invocationEvents: [.shake, .screenshot])*/
+
+        /* if !hasPerformedWalletDependentInitialization && didInitWallet {
+         didInitWalletManager()
+         }*/
     }
-    
+
     private func setup() {
         setupDefaults()
         setupAppearance()
-        setupLaunchViewController()
+        setupRootViewController()
         window.makeKeyAndVisible()
         listenForPushNotificationRequest()
         offMainInitialization()
-        
+
         Store.subscribe(self, name: .reinitWalletManager(nil), callback: {
             guard let trigger = $0 else { return }
             if case .reinitWalletManager(let callback) = trigger {
@@ -180,7 +188,7 @@ class ApplicationController : Subscriber, Trackable {
             }
         })
     }
-    
+
     func willEnterForeground() {
         guard let walletManager = primaryWalletManager,
             !walletManager.noWallet else { return }
@@ -225,7 +233,7 @@ class ApplicationController : Subscriber, Trackable {
     }
 
     private func didInitWalletManager() {
-      /*  guard let primaryWalletManager = primaryWalletManager else { return }
+        guard let primaryWalletManager = primaryWalletManager else { return }
         guard let rootViewController = window.rootViewController as? RootNavigationController else { return }
         walletCoordinator = WalletCoordinator(walletManagers: walletManagers)
         primaryWalletManager.apiClient?.sendLaunchEvent()
@@ -242,7 +250,7 @@ class ApplicationController : Subscriber, Trackable {
         }
         modalPresenter = ModalPresenter(walletManagers: walletManagers, window: window, apiClient: noAuthApiClient)
         startFlowController = StartFlowPresenter(walletManager: primaryWalletManager, rootViewController: rootViewController)
-        
+
         walletManagers.values.forEach { walletManager in
             feeUpdaters[walletManager.currency.code] = FeeUpdater(walletManager: walletManager)
         }
@@ -253,22 +261,33 @@ class ApplicationController : Subscriber, Trackable {
             _ = urlController?.handleUrl(url)
             launchURL = nil
         }
-        
-        if primaryWalletManager.noWallet {
-            addWalletCreationListener()
-            Store.perform(action: ShowStartFlow())
+
+        if UIApplication.shared.applicationState != .background {
+            if primaryWalletManager.noWallet {
+                addWalletCreationListener()
+                Store.perform(action: ShowStartFlow())
+            } else {
+                DispatchQueue.walletQueue.async {
+                    self.walletManagers[UserDefaults.mostRecentSelectedCurrencyCode]?.peerManager?.connect()
+                }
+                startDataFetchers()
+            }
+
+            //For when watch app launches app in background
         } else {
             DispatchQueue.walletQueue.async {
                 self.walletManagers[UserDefaults.mostRecentSelectedCurrencyCode]?.peerManager?.connect()
+                if self.fetchCompletionHandler != nil {
+                    self.performBackgroundFetch()
+                }
             }
-            startDataFetchers()
-        }*/
+        }
     }
-    
+
     private func reinitWalletManager(callback: @escaping () -> Void) {
         Store.perform(action: Reset())
         self.setup()
-        
+
         DispatchQueue.walletQueue.async {
             self.feeUpdaters.values.forEach({ $0.stop() })
             self.feeUpdaters.removeAll()
@@ -289,7 +308,7 @@ class ApplicationController : Subscriber, Trackable {
         Store.perform(action: WalletChange(Currencies.eth).setSyncingState(.connecting))
         Store.perform(action: WalletChange(Currencies.eth).setMaxDigits(Currencies.eth.commonUnit.decimals))
         Store.perform(action: WalletID.set(ethWalletManager.walletID))
-        
+
         Store.state.currencies.filter({ $0 is ERC20Token }).forEach { token in
             Store.perform(action: WalletChange(token).setSyncingState(.connecting))
             Store.perform(action: WalletChange(token).setMaxDigits(token.commonUnit.decimals))
@@ -313,33 +332,36 @@ class ApplicationController : Subscriber, Trackable {
 
     private func setupAppearance() {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.header]
-    }
-
-    private func setupLaunchViewController() {
-        let launchViewController = LaunchViewController()
-        let nc = UINavigationController()
-        nc.pushViewController(launchViewController, animated: false)
-        window.rootViewController = nc
+        let backImage = #imageLiteral(resourceName: "Back").image(withInsets: UIEdgeInsets(top: 0.0, left: 8.0, bottom: 2.0, right: 0.0))
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        // hide back button text
+        if #available(iOS 11, *) {
+            UIBarButtonItem.appearance().setBackButtonBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .normal, barMetrics: .default)
+        } else {
+            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: .default)
+        }
     }
 
     private func setupRootViewController() {
         let home = HomeScreenViewController(primaryWalletManager: walletManagers[Currencies.btc.code] as? BTCWalletManager)
         let nc = RootNavigationController()
-        
+        nc.pushViewController(home, animated: false)
+
         home.didSelectCurrency = { currency in
             guard let walletManager = self.walletManagers[currency.code] else { return }
             let accountViewController = AccountViewController(currency: currency, walletManager: walletManager)
             nc.pushViewController(accountViewController, animated: true)
         }
-        
+
         home.didTapBuy = {
             Store.perform(action: RootModalActions.Present(modal: .buy(currency: Currencies.btc)))
         }
-        
+
         home.didTapTrade = {
             Store.perform(action: RootModalActions.Present(modal: .trade))
         }
-        
+
         home.didTapMenu = {
             self.modalPresenter?.presentMenu()
         }
@@ -350,6 +372,7 @@ class ApplicationController : Subscriber, Trackable {
             nc.pushViewController(vc, animated: true)
         }
 
+        //State restoration
         if let currency = Store.state.currencies.first(where: { $0.code == UserDefaults.selectedCurrencyCode }),
             let walletManager = self.walletManagers[currency.code] {
             let accountViewController = AccountViewController(currency: currency, walletManager: walletManager)
@@ -367,7 +390,7 @@ class ApplicationController : Subscriber, Trackable {
         defaultsUpdater?.refresh()
         primaryWalletManager.apiClient?.events?.up()
     }
-    
+
     private func handleReachabilityLost(isReachable: Bool) {
         if !isReachable {
             self.reachability.didChange = { isReachable in
@@ -377,7 +400,7 @@ class ApplicationController : Subscriber, Trackable {
             }
         }
     }
-    
+
     private func retryAfterIsReachable() {
         guard let walletManager = primaryWalletManager,
             !walletManager.noWallet else { return }
@@ -403,7 +426,7 @@ class ApplicationController : Subscriber, Trackable {
             }
         })
     }
-    
+
     private func updateAssetBundles() {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let myself = self else { return }
@@ -451,51 +474,69 @@ class ApplicationController : Subscriber, Trackable {
     }
 
     func performBackgroundFetch() {
-//        saveEvent("appController.performBackgroundFetch")
-//        let group = DispatchGroup()
-//        if let peerManager = walletManager?.peerManager, peerManager.syncProgress(fromStartHeight: peerManager.lastBlockHeight) < 1.0 {
-//            group.enter()
-//            store.lazySubscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState }, callback: { state in
-//                if self.fetchCompletionHandler != nil {
-//                    if state.walletState.syncState == .success {
-//                        DispatchQueue.walletQueue.async {
-//                            peerManager.disconnect()
-//                            group.leave()
-//                        }
-//                    }
-//                }
-//            })
-//        }
-//
-//        group.enter()
-//        Async.parallel(callbacks: [
-//            { self.exchangeUpdater?.refresh(completion: $0) },
-//            { self.feeUpdater?.refresh(completion: $0) },
-//            { self.walletManager?.apiClient?.events?.sync(completion: $0) },
-//            { self.walletManager?.apiClient?.updateFeatureFlags(); $0() }
-//            ], completion: {
-//                group.leave()
-//        })
-//
-//        DispatchQueue.global(qos: .utility).async {
-//            if group.wait(timeout: .now() + 25.0) == .timedOut {
-//                self.saveEvent("appController.backgroundFetchFailed")
-//                self.fetchCompletionHandler?(.failed)
-//            } else {
-//                self.saveEvent("appController.backgroundFetchNewData")
-//                self.fetchCompletionHandler?(.newData)
-//            }
-//            self.fetchCompletionHandler = nil
-//        }
+        //        saveEvent("appController.performBackgroundFetch")
+        //        let group = DispatchGroup()
+        //        if let peerManager = walletManager?.peerManager, peerManager.syncProgress(fromStartHeight: peerManager.lastBlockHeight) < 1.0 {
+        //            group.enter()
+        //            store.lazySubscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState }, callback: { state in
+        //                if self.fetchCompletionHandler != nil {
+        //                    if state.walletState.syncState == .success {
+        //                        DispatchQueue.walletQueue.async {
+        //                            peerManager.disconnect()
+        //                            group.leave()
+        //                        }
+        //                    }
+        //                }
+        //            })
+        //        }
+        //
+        //        group.enter()
+        //        Async.parallel(callbacks: [
+        //            { self.exchangeUpdater?.refresh(completion: $0) },
+        //            { self.feeUpdater?.refresh(completion: $0) },
+        //            { self.walletManager?.apiClient?.events?.sync(completion: $0) },
+        //            { self.walletManager?.apiClient?.updateFeatureFlags(); $0() }
+        //            ], completion: {
+        //                group.leave()
+        //        })
+        //
+        //        DispatchQueue.global(qos: .utility).async {
+        //            if group.wait(timeout: .now() + 25.0) == .timedOut {
+        //                self.saveEvent("appController.backgroundFetchFailed")
+        //                self.fetchCompletionHandler?(.failed)
+        //            } else {
+        //                self.saveEvent("appController.backgroundFetchNewData")
+        //                self.fetchCompletionHandler?(.newData)
+        //            }
+        //            self.fetchCompletionHandler = nil
+        //        }
     }
 
     func willResignActive() {
+        applyBlurEffect()
         guard !Store.state.isPushNotificationsEnabled else { return }
         guard let pushToken = UserDefaults.pushToken else { return }
         primaryWalletManager?.apiClient?.deletePushNotificationToken(pushToken)
     }
-    
+
     func didBecomeActive() {
+        removeBlurEffect()
+    }
+
+    private func applyBlurEffect() {
+        guard !Store.state.isLoginRequired && !Store.state.isPromptingBiometrics else { return }
+        blurView.alpha = 1.0
+        blurView.frame = window.frame
+        window.addSubview(blurView)
+    }
+
+    private func removeBlurEffect() {
+        let duration = Store.state.isLoginRequired ? 0.4 : 0.1 // keep content hidden if lock screen about to appear on top
+        UIView.animate(withDuration: duration, animations: {
+            self.blurView.alpha = 0.0
+        }, completion: { _ in
+            self.blurView.removeFromSuperview()
+        })
     }
 
     private func addTokenCountChangeListener() {
@@ -524,20 +565,20 @@ class ApplicationController : Subscriber, Trackable {
 extension ApplicationController {
     func listenForPushNotificationRequest() {
         // TODO: notifications
-//        Store.subscribe(self, name: .registerForPushNotificationToken, callback: { _ in
-//            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-//                if granted {
-//                    self.application?.registerForRemoteNotifications()
-//                }
-//            }
-//        })
+        //        Store.subscribe(self, name: .registerForPushNotificationToken, callback: { _ in
+        //            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+        //                if granted {
+        //                    self.application?.registerForRemoteNotifications()
+        //                }
+        //            }
+        //        })
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        guard let apiClient = walletManager?.apiClient else { return }
-//        guard UserDefaults.pushToken != deviceToken else { return }
-//        UserDefaults.pushToken = deviceToken
-//        apiClient.savePushNotificationToken(deviceToken)
+        //        guard let apiClient = walletManager?.apiClient else { return }
+        //        guard UserDefaults.pushToken != deviceToken else { return }
+        //        UserDefaults.pushToken = deviceToken
+        //        apiClient.savePushNotificationToken(deviceToken)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

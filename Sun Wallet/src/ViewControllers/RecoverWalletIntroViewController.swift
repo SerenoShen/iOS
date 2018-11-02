@@ -10,7 +10,7 @@ class RecoverWalletIntroViewController : UIViewController {
 
     //MARK: - Private
     private let didTapNext: () -> Void
-    private let header = RadialGradientView(backgroundColor: .purple)
+    private let header = RadialGradientView(backgroundColor: UIColor(named: "purple") ?? .purple)
     private let nextButton = SUNButton(title: S.RecoverWallet.next, type: .primary)
     private let label = UILabel(font: .customBody(size: 16.0), color: .white)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RecoverWalletIllustration"))
@@ -46,7 +46,7 @@ class RecoverWalletIntroViewController : UIViewController {
     }
 
     private func setData() {
-        view.backgroundColor = .darkBackground
+        view.backgroundColor = UIColor(named: "darkBackground")
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.text = S.RecoverWallet.intro

@@ -1,8 +1,13 @@
 PODS:
   - Alamofire (4.7.3)
   - Analytics (3.6.9)
-  - AppsFlyerFramework (4.8.9)
+  - Appsee (2.4.5)
+  - AppsFlyerFramework (4.8.10)
   - BoundlessKit (5.5.5)
+  - BulletinBoard (2.0.2)
+  - Cards (1.3.4):
+    - Player (= 0.8.4)
+  - CocoaAsyncSocket (7.6.3)
   - Cryptex (0.0.5):
     - Cryptex/All (= 0.0.5)
     - CryptoSwift
@@ -54,15 +59,17 @@ PODS:
   - Cryptex/Poloniex (0.0.5):
     - Cryptex/Common
     - CryptoSwift
-  - CryptoSwift (0.11.0)
-  - ESTabBarController-swift (2.6.2)
+  - CryptoSwift (0.13.0)
+  - ESTabBarController-swift (2.6.4)
   - HGPlaceholders (0.3.0)
   - hpple (0.2.0)
-  - Instabug (8.0.14)
+  - Instabug (8.0.15)
   - Lokalise (0.8.1)
-  - lottie-ios (2.5.0)
-  - OneSignal (2.8.9)
+  - "NSData+FastHex (1.0.1)"
+  - ObjectMapper (3.3.0)
+  - OneSignal (2.9.3)
   - Pastel (0.5.1)
+  - Player (0.8.4)
   - PromisesObjC (1.2.3)
   - PromisesObjC/PerformanceTests (1.2.3)
   - PromisesObjC/Tests (1.2.3)
@@ -70,14 +77,20 @@ PODS:
     - Analytics (~> 3.5)
     - AppsFlyerFramework (~> 4)
     - AppsFlyerTvOsLib (~> 4)
-  - SnapKit (4.0.1)
+  - SnapKit (4.2.0)
   - SwiftLint (0.27.0)
-  - SwiftReorder (5.0.0)
-  - TinyConstraints (3.3.0)
+  - SwiftReorder (6.0.0)
+  - SwiftTheme (0.4.3)
+  - SwiftyStoreKit (0.13.3)
+  - TinyConstraints (3.3.1)
   - UserInterface (0.5.0)
   - WKZombie (1.1.1):
     - hpple (= 0.2.0)
-  - XLPagerTabStrip (8.0.1)
+  - XLPagerTabStrip (8.1.0)
+  - XMRMiner (0.1.0):
+    - CocoaAsyncSocket (~> 7.6)
+    - "NSData+FastHex"
+    - ObjectMapper (~> 3.0)
   - ZendeskSDK (2.2.0):
     - ZendeskSDK/Providers (= 2.2.0)
     - ZendeskSDK/UI (= 2.2.0)
@@ -91,13 +104,15 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Analytics
+  - Appsee
   - BoundlessKit
+  - BulletinBoard
+  - Cards
   - Cryptex
   - ESTabBarController-swift
   - HGPlaceholders
   - Instabug
   - Lokalise
-  - lottie-ios
   - OneSignal
   - Pastel
   - PromisesObjC (~> 1.0)
@@ -107,18 +122,25 @@ DEPENDENCIES:
   - SnapKit
   - SwiftLint
   - SwiftReorder
+  - SwiftTheme
+  - SwiftyStoreKit
   - TinyConstraints
   - UserInterface
   - WKZombie
   - XLPagerTabStrip
+  - XMRMiner
   - ZendeskSDK
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Analytics
+    - Appsee
     - AppsFlyerFramework
     - BoundlessKit
+    - BulletinBoard
+    - Cards
+    - CocoaAsyncSocket
     - Cryptex
     - CryptoSwift
     - ESTabBarController-swift
@@ -126,46 +148,60 @@ SPEC REPOS:
     - hpple
     - Instabug
     - Lokalise
-    - lottie-ios
+    - "NSData+FastHex"
+    - ObjectMapper
     - OneSignal
     - Pastel
+    - Player
     - PromisesObjC
     - segment-appsflyer-ios
     - SnapKit
     - SwiftLint
     - SwiftReorder
+    - SwiftTheme
+    - SwiftyStoreKit
     - TinyConstraints
     - UserInterface
     - WKZombie
     - XLPagerTabStrip
+    - XMRMiner
     - ZendeskSDK
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Analytics: 6541ce337e99d9f7a2240a8b3953940a7be5f998
-  AppsFlyerFramework: 0fc823ec9b77f913e4108caa82c969be033058b1
+  Appsee: daf5819e0e45da6166a4752854583125cc9f3910
+  AppsFlyerFramework: 481eafa4f92e3274fa8d04f10108cdad83fd532b
   BoundlessKit: d22ef1495ad734d74bb9629931d007952e4a89d3
+  BulletinBoard: a4a3022789e5202167127c3231975313c1d76c51
+  Cards: 99d16dddcd0789c4d0ba1a4230458beecbdbe3d4
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Cryptex: a7125c1520abaa02f884fcec398f1ceed6c4ba91
-  CryptoSwift: ad5208dd2aae0a764ea4ce2c2d34bd067cae67f0
-  ESTabBarController-swift: f0a8679e43df1e60b7b36bbcaf1dc98ba6273c7d
+  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
+  ESTabBarController-swift: 58cca4ab7de980657d99a02181c1ff310983e975
   HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
-  Instabug: c47ed58a9a70d37bc8310376535818cbcfb2b57e
+  Instabug: 1f26cca29ec1fc49ba7dffbc5533734c14f8c28d
   Lokalise: d81f4ccce8cd2c1589bf73bb39fab7781d4f7cbc
-  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
-  OneSignal: 0fb3522620d392195ed8e90e4e96717c6085df45
+  "NSData+FastHex": a22ad031ee10a4297d0bf4d20cf03406a4476169
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  OneSignal: a506e3bc61d2030f0757faf9bd783a9b211c6e3c
   Pastel: b3dd5b8d612dac06ae7c63c97c45c900829bc139
+  Player: e45514e9e5fb8ff18f50eb2ba6f84dac9b6a0024
   PromisesObjC: a3a4263d8a9260214267e0b3788d0f83466ad449
   segment-appsflyer-ios: f57fa875e68881460c5a24f09199a8bf6a85e6cf
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
-  SwiftReorder: 66c81f33321629715c53a8f8214a1e892a9f0fdd
-  TinyConstraints: 6d0e495e72372556b31a0cc9b60983d5f780ef2f
+  SwiftReorder: 0eefefe5e469c70a98d129e9aa2952862a2b34d2
+  SwiftTheme: 628345b948068a48d330d76dffb1a990ea5f90aa
+  SwiftyStoreKit: 9ebd15971e28aa2989825fe8bc092eb5f75dd0b2
+  TinyConstraints: dbf7519aefc01ea59d62244300c7718aec68e280
   UserInterface: 54e15db9aceaec2b9686d00f471adb15d2598ea3
   WKZombie: 345930c44980d4d3529d5b54b131df0dc04bbb0a
-  XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
+  XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
+  XMRMiner: f7704f21d2418a751b6d7ca64263e2b917a89191
   ZendeskSDK: 44ee00338dd718495f0364369420ae11b389c878
 
-PODFILE CHECKSUM: d4132e9a19dc65b95144f8b2b8806be40a88bae7
+PODFILE CHECKSUM: 1d4a0a9dedbf48221f2afcc9276a88f4ff4e6c2a
 
 COCOAPODS: 1.5.3

@@ -40,7 +40,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private let addressCell: AddressCell
     private let memoCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
     private let sendButton = SUNButton(title: S.Send.sendLabel, type: .primary)
-    private let currencyBorder = UIView(color: .secondaryShadow)
+    private let currencyBorder = UIView(color: UIColor(named: "secondaryShadow") ?? .black)
     private var currencySwitcherHeightConstraint: NSLayoutConstraint?
     private var pinPadHeightConstraint: NSLayoutConstraint?
     private let confirmTransitioningDelegate = PinTransitioningDelegate()
@@ -163,8 +163,8 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         let balanceText = balanceAmount.description
         let balanceOutput = String(format: S.Send.balance, balanceText)
         var feeOutput = ""
-        var color: UIColor = .grayTextTint
-        var feeColor: UIColor = .grayTextTint
+        var color: UIColor = UIColor(named: "grayTextTint") ?? .gray
+        var feeColor: UIColor = UIColor(named: "grayTextTint") ?? .gray
         
         if let amount = amount, amount.rawValue > UInt256(0) {
             if let fee = sender.fee(forAmount: amount.rawValue) {
@@ -173,11 +173,11 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                 let feeText = feeAmount.description
                 feeOutput = String(format: S.Send.fee, feeText)
                 if feeCurrency.matches(currency) && (balance >= fee) && amount.rawValue > (balance - fee) {
-                    color = .cameraGuideNegative
+                    color = UIColor(named: "cameraGuideNegative") ?? .red
                 }
             } else {
                 feeOutput = S.Send.nilFeeError
-                feeColor = .cameraGuideNegative
+                feeColor = UIColor(named: "cameraGuideNegative") ?? .red
             }
         }
         
