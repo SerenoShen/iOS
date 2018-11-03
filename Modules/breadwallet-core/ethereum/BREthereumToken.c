@@ -207,13 +207,13 @@ console.log (result)
 static struct BREthereumTokenRecord tokens[] = {
     {
         // BRD first... so we can find it.
-        "0x558ec3152e2eb2174905cd19aea4e34a23de9ad6",
-        "BRD",
+        "0xbe4caf54f746d710796a862b580188b51de1c8b6",
+        "SUN Coin",
         "BRD Token",
         "",
         18,
-        "#ff5193",
-        "#f9a43a",
+        "##FFCA3F",
+        "#FFAA27",
         {TOKEN_SUN_DEFAULT_GAS_LIMIT},
         {{{.u64 = {TOKEN_SUN_DEFAULT_GAS_PRICE_IN_WEI_UINT64, 0, 0, 0}}}},
         1

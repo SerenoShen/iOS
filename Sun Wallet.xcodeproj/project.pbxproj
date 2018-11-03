@@ -464,7 +464,6 @@
 		FA14C95F214E682900903D63 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA14C95E214E682900903D63 /* StoreKit.framework */; };
 		FA14C961214E684B00903D63 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA14C960214E684B00903D63 /* HomeKit.framework */; };
 		FA1ACABD215F90C600482B80 /* Paintcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1ACABC215F90C600482B80 /* Paintcode.swift */; };
-		FA849C82215FAE80007AC7D9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA849C81215FAE80007AC7D9 /* LaunchViewController.swift */; };
 		FAA22C68217736EF009DA8A0 /* UIColor+BRWAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA22C67217736EF009DA8A0 /* UIColor+BRWAdditions.swift */; };
 /* End PBXBuildFile section */
 
@@ -1650,7 +1649,6 @@
 		FA14C95E214E682900903D63 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FA14C960214E684B00903D63 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FA1ACABC215F90C600482B80 /* Paintcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paintcode.swift; sourceTree = "<group>"; };
-		FA849C81215FAE80007AC7D9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		FAA22C67217736EF009DA8A0 /* UIColor+BRWAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BRWAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2667,7 +2665,6 @@
 			children = (
 				75A2A7931DA5934300A983D8 /* AppDelegate.swift */,
 				CE20C8F11DBAF71500C8397A /* ApplicationController.swift */,
-				FA849C81215FAE80007AC7D9 /* LaunchViewController.swift */,
 				CEC7E593200D7C830056F410 /* Sentry.swift */,
 				754AE0BB1DFE8A46007FD001 /* BRCore.swift */,
 				CEE659E61F65A936001FF29D /* RetryTimer.swift */,
@@ -4121,7 +4118,6 @@
 				CE90571A1DFF18B2006BA848 /* ScanViewController.swift in Sources */,
 				7CB2286F20A2286700105FFF /* BREthereum.swift in Sources */,
 				7C6ACCB61FEB345E0028ABFA /* TxStatusCell.swift in Sources */,
-				FA849C82215FAE80007AC7D9 /* LaunchViewController.swift in Sources */,
 				CE20C8F61DBAF77D00C8397A /* UIViewController+BRWAdditions.swift in Sources */,
 				222319B01F27985A00008F20 /* BRBrowserViewController.swift in Sources */,
 				CE74F58D1E3BA85600ED5FA9 /* ExchangeUpdater.swift in Sources */,
@@ -5028,7 +5024,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sun Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5058,7 +5054,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sun Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5317,7 +5313,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sun Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5589,7 +5585,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sun Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5855,7 +5851,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sun Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

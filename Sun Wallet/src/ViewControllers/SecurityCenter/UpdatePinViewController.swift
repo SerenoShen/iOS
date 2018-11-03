@@ -29,8 +29,8 @@ class UpdatePinViewController : UIViewController, Subscriber {
     private let instruction = UILabel.wrapping(font: .customBody(size: 14.0), color: .white)
     private let caption = UILabel.wrapping(font: .customBody(size: 13.0), color: .white)
     private var pinView: PinView
-    private let pinPadBackground = UIView(color: .white)
-    private let pinPad = PinPadViewController(style: .clear, keyboardType: .pinPad, maxDigits: 0, shouldShowBiometrics: false)
+    private let pinPadBackground = UIView(color: UIColor(named: "darkBackground") ?? .white)
+    private let pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0, shouldShowBiometrics: false)
     private let spacer = UIView()
     private let walletManager: BTCWalletManager
     private let faq: UIButton

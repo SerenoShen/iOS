@@ -33,7 +33,6 @@ public protocol CurrencyDef {
     /// Returns the symbol for given unit or its name if no symbol defined
     func symbol(forUnit unit: CurrencyUnit) -> String
 }
-
 public extension CurrencyDef {
     var urlSchemes: [String]? {
         return nil

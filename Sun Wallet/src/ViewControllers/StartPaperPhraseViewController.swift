@@ -12,7 +12,7 @@ class StartPaperPhraseViewController : UIViewController {
     private let button: SUNButton
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "PaperKey"))
     private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: .white)
-    private let header = RadialGradientView(backgroundColor: UIColor(named: "pink") ?? .red, offset: 64.0)
+    private let header = UIView(color: UIColor(named: "darkBackground") ?? .white)
     private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .white)
     private let callback: () -> Void
 

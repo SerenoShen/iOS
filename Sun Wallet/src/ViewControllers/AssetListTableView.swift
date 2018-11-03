@@ -17,7 +17,7 @@ class AssetListTableView: UITableViewController, Subscriber {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor(named: "darkBackground")
+        tableView.backgroundColor = .white
         tableView.register(HomeScreenCell.self, forCellReuseIdentifier: HomeScreenCell.cellIdentifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = assetHeight
@@ -37,15 +37,15 @@ class AssetListTableView: UITableViewController, Subscriber {
     }
     
     private func setupAddWalletButton() {
-        addWalletButton.tintColor = UIColor(named: "disabledWhiteText")
-        addWalletButton.setTitleColor(UIColor(named: "disabledWhiteText"), for: .normal)
-        addWalletButton.setTitleColor(UIColor(named: "transparentWhite"), for: .highlighted)
+        addWalletButton.tintColor = UIColor(named: "primaryText")
+        addWalletButton.setTitleColor(UIColor(named: "primaryText"), for: .normal)
+        addWalletButton.setTitleColor(UIColor(named: "primaryText"), for: .highlighted)
         addWalletButton.addTarget(self, action: #selector(addWallet), for: .touchUpInside)
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: addWalletButtonHeight))
         addWalletButton.frame = CGRect(x: 0, y: 0, width: footerView.frame.width, height: addWalletButtonHeight)
         addWalletButton.accessibilityLabel = E.isScreenshots ? "Add Wallet" : S.TokenList.addTitle
         footerView.addSubview(addWalletButton)
-        footerView.backgroundColor = UIColor(named: "darkBackground")
+        footerView.backgroundColor = .white
         tableView.tableFooterView = footerView
     }
     

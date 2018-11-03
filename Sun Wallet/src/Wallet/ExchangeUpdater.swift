@@ -34,12 +34,17 @@ class ExchangeUpdater : Subscriber {
                 // calculate token/fiat rates
                 var tokenBtcDict = [String: Double]()
                 tokenBtcRates.forEach { tokenBtcDict[$0.reciprocalCode] = $0.rate }
+                tokenBtcDict["sun"] = 0.000354677142
                 Store.state.currencies.filter({ !$0.matches(Currencies.btc) }).forEach { currency in
+                    print(currency.name)
                     guard let tokenBtcRate = tokenBtcDict[currency.code.lowercased()] else { return }
                     let fiatRates: [Rate] = btcFiatRates.map { btcFiatRate in
                         let tokenFiatRate = btcFiatRate.rate * tokenBtcRate
                         return Rate(code: btcFiatRate.code, name: btcFiatRate.name, rate: tokenFiatRate, reciprocalCode: currency.code.lowercased())
                     }
+                    print("tokenBtcDict")
+                    print(tokenBtcDict)
+
                     Store.perform(action: WalletChange(currency).setExchangeRates(currentRate: self.findCurrentRate(rates: fiatRates), rates: fiatRates))
                 }
             }

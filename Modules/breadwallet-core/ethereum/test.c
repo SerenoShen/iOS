@@ -877,7 +877,7 @@ void runTransactionTests2 (BREthereumAccount account, BREthereumNetwork network)
 
 /*
  From: 0xd551234ae421e3bcba99a0da6d736074f22192ff
- To: Contract 0x558ec3152e2eb2174905cd19aea4e34a23de9ad6 (SunCoin)
+ To: Contract 0xbe4caf54f746d710796a862b580188b51de1c8b6 (SunCoin)
  Recv: 0x932a27e1bc84f5b74c29af3d888926b1307f4a5c
  Amnt: 5,968.77
  
@@ -1455,7 +1455,7 @@ void runTokenTests () {
 
     BREthereumToken token;
 
-    token = tokenLookup ("0x558ec3152e2eb2174905cd19aea4e34a23de9ad6"); // BRD
+    token = tokenLookup ("0xbe4caf54f746d710796a862b580188b51de1c8b6"); // SUN
     assert (NULL != token);
 
 #if defined (BITCOIN_DEBUG)

@@ -12,9 +12,9 @@ class HomeScreenViewController : UIViewController, Subscriber, Trackable {
     }
     private let assetList = AssetListTableView()
     private let subHeaderView = UIView()
-    private let logo = UILabel(font: .customBold(size: 30.0), color: .white)
-    private let total = UILabel(font: .customBold(size: 30.0), color: .white)
-    private let totalHeader = UILabel(font: .customBody(size: 12.0), color: .white)
+    let logoView = UIImageView(image: UIImage(named: "logo"))
+    private let total = UILabel(font: .customBold(size: 30.0), color: .black)
+    private let totalHeader = UILabel(font: .customBody(size: 12.0), color: .black)
     private let prompt = UIView()
     private var promptHiddenConstraint: NSLayoutConstraint!
 
@@ -54,7 +54,7 @@ class HomeScreenViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(subHeaderView)
         subHeaderView.addSubview(totalHeader)
         subHeaderView.addSubview(total)
-        subHeaderView.addSubview(logo)
+        subHeaderView.addSubview(logoView)
         view.addSubview(prompt)
     }
 
@@ -67,16 +67,16 @@ class HomeScreenViewController : UIViewController, Subscriber, Trackable {
             subHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             subHeaderView.heightAnchor.constraint(equalToConstant: headerHeight) ])
         
-        logo.constrain([
-            logo.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
-            logo.bottomAnchor.constraint(equalTo: subHeaderView.bottomAnchor, constant: -C.padding[2]),
-            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: 230.0/772.0)
+        logoView.constrain([
+            logoView.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
+            logoView.bottomAnchor.constraint(equalTo: subHeaderView.bottomAnchor, constant: -C.padding[2]),
+            logoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            logoView.heightAnchor.constraint(equalTo: logoView.widthAnchor, multiplier: 230.0/772.0)
             ])
         
         total.constrain([
             total.trailingAnchor.constraint(equalTo: subHeaderView.trailingAnchor, constant: -C.padding[2]),
-            total.centerYAnchor.constraint(equalTo: logo.centerYAnchor)
+            total.centerYAnchor.constraint(equalTo: logoView.centerYAnchor)
             ])
         totalHeader.constrain([
             totalHeader.trailingAnchor.constraint(equalTo: total.trailingAnchor),
@@ -101,8 +101,8 @@ class HomeScreenViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = UIColor(named: "darkBackground")
-        subHeaderView.backgroundColor = UIColor(named: "darkBackground")
+        view.backgroundColor = .white
+        subHeaderView.backgroundColor = .white
         subHeaderView.clipsToBounds = false
         
         navigationItem.titleView = UIView()
@@ -111,6 +111,7 @@ class HomeScreenViewController : UIViewController, Subscriber, Trackable {
         navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .default)
         
         totalHeader.text = S.HomeScreen.totalAssets
+        totalHeader.textColor = .black
         totalHeader.textAlignment = .left
         total.textAlignment = .left
         total.text = "0"

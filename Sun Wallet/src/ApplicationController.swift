@@ -173,7 +173,6 @@ class ApplicationController : Subscriber, Trackable {
 
     private func setup() {
         setupDefaults()
-        setupAppearance()
         setupRootViewController()
         window.makeKeyAndVisible()
         listenForPushNotificationRequest()
@@ -327,19 +326,6 @@ class ApplicationController : Subscriber, Trackable {
     private func setupDefaults() {
         if UserDefaults.standard.object(forKey: shouldRequireLoginTimeoutKey) == nil {
             UserDefaults.standard.set(60.0*3.0, forKey: shouldRequireLoginTimeoutKey) //Default 3 min timeout
-        }
-    }
-
-    private func setupAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.header]
-        let backImage = #imageLiteral(resourceName: "Back").image(withInsets: UIEdgeInsets(top: 0.0, left: 8.0, bottom: 2.0, right: 0.0))
-        UINavigationBar.appearance().backIndicatorImage = backImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        // hide back button text
-        if #available(iOS 11, *) {
-            UIBarButtonItem.appearance().setBackButtonBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .normal, barMetrics: .default)
-        } else {
-            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: .default)
         }
     }
 

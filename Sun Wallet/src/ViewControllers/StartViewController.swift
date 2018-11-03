@@ -1,4 +1,6 @@
 import UIKit
+import Pastel
+import TinyConstraints
 
 class StartViewController : UIViewController {
 
@@ -10,23 +12,18 @@ class StartViewController : UIViewController {
     }
 
     //MARK: - Private
-    private let logoBackground = MotionGradientView()
-    private let messageBackground = MotionGradientView()
-    private let message = CutoutLabel(font: .customMedium(size: 18.0), color: UIColor(named: "whiteTint")!)
+    private let message = CutoutLabel(font: .customMedium(size: 18.0), color: .white)
     private let create = SUNButton(title: S.StartViewController.createButton, type: .primary)
     private let recover = SUNButton(title: S.StartViewController.recoverButton, type: .secondaryTransparent)
     private let didTapRecover: () -> Void
     private let didTapCreate: () -> Void
-    private let background = UIView()
-    private var logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
+    let logoView = UIImageView(image: UIImage(named: "logo"))
 
     override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "darkBackground")
         setData()
         addSubviews()
         addConstraints()
         addButtonActions()
-        logo.tintColor = UIColor(named: "darkBackground")
     }
 
     private func setData() {
@@ -37,32 +34,35 @@ class StartViewController : UIViewController {
     }
 
     private func addSubviews() {
-        view.addSubview(background)
-        view.addSubview(logoBackground)
-        logoBackground.addSubview(logo)
-        view.addSubview(messageBackground)
-        messageBackground.addSubview(message)
+        let pastelView = PastelView(frame: view.bounds)
+        pastelView.startPastelPoint = .topLeft
+        pastelView.endPastelPoint = .bottomRight
+        pastelView.animationDuration = 1.5
+        pastelView.setColors([UIColor(red: 255.0/255.0, green: 202.0/255.0, blue: 63.0/255.0, alpha: 1.0),
+                              UIColor(red: 247.0/255.0, green: 181.0/255.0, blue: 51.0/255.0, alpha: 1.0),
+                              UIColor(red: 255.0/255.0, green: 187.0/255.0, blue: 69.0/255.0, alpha: 1.0),
+                              UIColor(red: 255.0/255.0, green: 172.0/255.0, blue: 38.0/255.0, alpha: 1.0)])
+
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+
+
+        view.addSubview(logoView)
+        logoView.width(311)
+        logoView.height(94)
+        logoView.center(in: view)
+
+        view.addSubview(message)
+        //message.width(logoView.wid)
         view.addSubview(create)
         view.addSubview(recover)
+
     }
 
     private func addConstraints() {
-        background.constrain(toSuperviewEdges: nil)
-        let yConstraint = NSLayoutConstraint(item: logoBackground, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0.0)
-        logoBackground.constrain([
-            logoBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.38, constant: 1.0),
-            logoBackground.heightAnchor.constraint(equalTo: logoBackground.widthAnchor, multiplier: logo.image!.size.height/logo.image!.size.width, constant: 1.0),
-            logoBackground.constraint(.centerX, toView: view, constant: nil),
-            yConstraint])
-        logo.constrain(toSuperviewEdges: nil)
-        messageBackground.constrain([
-            messageBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            messageBackground.topAnchor.constraint(equalTo: logoBackground.bottomAnchor, constant: C.padding[1]),
-            messageBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
-        message.constrain(toSuperviewEdges: nil)
         recover.constrain([
             recover.constraint(.leading, toView: view, constant: C.padding[2]),
-            recover.constraint(.bottom, toView: view, constant: -C.padding[3]),
+            recover.constraint(.bottom, toView: view, constant: -C.padding[6]),
             recover.constraint(.trailing, toView: view, constant: -C.padding[2]),
             recover.constraint(.height, constant: C.Sizes.buttonHeight) ])
         create.constrain([

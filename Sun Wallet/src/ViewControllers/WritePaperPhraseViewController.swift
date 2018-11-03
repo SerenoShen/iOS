@@ -6,7 +6,7 @@ class WritePaperPhraseViewController: UIViewController {
     private let pin: String
     private let label = UILabel.wrapping(font: UIFont.customBody(size: 16.0))
     private let stepLabel = UILabel.wrapping(font: UIFont.customMedium(size: 13.0))
-    private let header = RadialGradientView(backgroundColor: UIColor(named: "pink") ?? .red)
+    private let header = UIView(color: UIColor(named: "darkBackground") ?? .yellow)
     
     private lazy var phraseViews: [PhraseView] = {
         guard let phraseString = self.walletManager.seedPhrase(pin: self.pin) else { return [] }
@@ -52,7 +52,7 @@ class WritePaperPhraseViewController: UIViewController {
 
         stepLabel.text = String(format: S.WritePaperPhrase.step, 1, phraseViews.count)
         stepLabel.textAlignment = .center
-        stepLabel.textColor = UIColor(white: 170.0/255.0, alpha: 1.0)
+        stepLabel.textColor = .white
 
         addSubviews()
         addConstraints()

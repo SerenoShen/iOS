@@ -1,5 +1,6 @@
 import UIKit
 import LocalAuthentication
+import Pastel
 
 private let topControlHeight: CGFloat = 32.0
 
@@ -9,7 +10,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     var walletManager: BTCWalletManager? {
         didSet {
             guard walletManager != nil else { return }
-            pinView = PinView(style: .login, length: Store.state.pinLength)
+            pinView = PinView(style: .create, length: Store.state.pinLength)
         }
     }
     var shouldSelfDismiss = false
@@ -21,9 +22,9 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         if let walletManager = walletManager, LAContext.canUseBiometrics && !walletManager.pinLoginRequired && Store.state.isBiometricsEnabled{
             shouldUseBiometrics = true
         }
-        self.pinPad = PinPadViewController(style: .clear, keyboardType: .pinPad, maxDigits: 0, shouldShowBiometrics: shouldUseBiometrics)
+        self.pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0, shouldShowBiometrics: shouldUseBiometrics)
         if walletManager != nil {
-            self.pinView = PinView(style: .login, length: Store.state.pinLength)
+            self.pinView = PinView(style: .create, length: Store.state.pinLength)
         }
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,19 +34,16 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     //MARK: - Private
-    private let backgroundView = UIView()
     private let pinPad: PinPadViewController
-    private let pinViewContainer = UIView()
+    private let pinViewContainer = UIView(color: .clear)
     private var pinView: PinView?
     private let isPresentedForLock: Bool
     private let disabledView: WalletDisabledView
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    private var logo = UIImageView(image: UIImage(named: "logo")?.withRenderingMode(.alwaysTemplate))
+    let logoView = UIImageView(image: UIImage(named: "logo"))
     private var pinPadPottom: NSLayoutConstraint?
-    private var topControlTop: NSLayoutConstraint?
     private var unlockTimer: Timer?
-    private let pinPadBackground = MotionGradientView()
-    private let logoBackground = MotionGradientView()
+    private let pinPadBackground = UIView(color: .white)
     private var hasAttemptedToShowBiometrics = false
     private let lockedOverlay = UIVisualEffectView()
     private var isResetting = false
@@ -73,7 +71,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             }))
             recover.addCloseNavigationItem()
             nc.viewControllers = [recover]
-            nc.navigationBar.tintColor = UIColor(named: "darkText")
+            nc.navigationBar.tintColor = .white
             nc.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor(named: "darkText"),
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -87,7 +85,6 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         Store.subscribe(self, name: .loginFromSend, callback: {_ in
             self.authenticationSucceded()
         })
-        logo.tintColor = UIColor(named: "darkBackground")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -118,10 +115,27 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func addSubviews() {
-        view.addSubview(backgroundView)
+        let pastelView = PastelView(frame: view.bounds)
+        pastelView.startPastelPoint = .topLeft
+        pastelView.endPastelPoint = .bottomRight
+        pastelView.animationDuration = 1.5
+        pastelView.setColors([UIColor(red: 255.0/255.0, green: 202.0/255.0, blue: 63.0/255.0, alpha: 1.0),
+                              UIColor(red: 247.0/255.0, green: 181.0/255.0, blue: 51.0/255.0, alpha: 1.0),
+                              UIColor(red: 255.0/255.0, green: 187.0/255.0, blue: 69.0/255.0, alpha: 1.0),
+                              UIColor(red: 255.0/255.0, green: 172.0/255.0, blue: 38.0/255.0, alpha: 1.0)])
+
+        pastelView.startAnimation()
+        view.insertSubview(pastelView, at: 0)
+
+
+        view.addSubview(logoView)
+        logoView.width(311)
+        logoView.height(94)
+        logoView.centerX(to: view)
+        logoView.top(to: view, nil, offset: 100, relation: .equal, priority: .defaultHigh, isActive: true)
+
         view.addSubview(pinViewContainer)
-        view.addSubview(logoBackground)
-        logoBackground.addSubview(logo)
+
         if walletManager != nil {
             view.addSubview(pinPadBackground)
         } else {
@@ -130,16 +144,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func addConstraints() {
-        backgroundView.constrain(toSuperviewEdges: nil)
-        backgroundView.backgroundColor = UIColor(named: "darkBackground")
         pinViewContainer.constrain(toSuperviewEdges: nil)
-        topControlTop = logoBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: topControlHeight + (E.isIPhoneX ? C.padding[9] + 35.0 : C.padding[9] + 20.0))
-        logoBackground.constrain([
-            topControlTop,
-            logoBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoBackground.heightAnchor.constraint(equalTo: logoBackground.widthAnchor, multiplier: logo.image!.size.height/logo.image!.size.width),
-            logoBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45) ])
-        logo.constrain(toSuperviewEdges: nil)
 
         if walletManager != nil {
             pinPadPottom = pinPadBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[3] : 0.0)
@@ -203,7 +208,6 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
         UIView.spring(0.6, animations: {
             self.pinPadPottom?.constant = self.pinPad.height
-            self.topControlTop?.constant = -100.0
             lock.alpha = 1.0
             label.alpha = 1.0
             self.pinView?.alpha = 0.0
